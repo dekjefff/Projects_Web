@@ -1,0 +1,130 @@
+
+header {
+
+    color: #3a1e22;
+    background-color: #ab8970;
+    text-align: center;
+    padding: 20px;
+}
+
+footer {
+
+    color: #3a1e22;
+    background-color: #ab8970;
+    text-align: center;
+    padding: 10px;
+
+}
+
+nav {
+
+    text-align: center;
+    font-size: 25px;
+    
+}
+
+nav a:hover{
+        display: block;
+        background-color:#ffb464;
+        background-position: center;
+        color: #fff;  
+}
+
+nav a{
+
+    color: #000;
+    text-decoration: none;
+
+}
+
+nav ul{
+
+    list-style: none;
+}
+
+main h1{
+        color: #3a1e22;
+        text-align: center;
+    }
+
+main h5{
+        color: #3a1e22;
+        text-align: center;
+    }
+
+
+section h3{
+        color: #3a1e22;
+        background-color: burlywood;
+                
+}
+
+section section{
+
+        width: 75%;
+        margin: auto;
+        border: 2px solid #ab8970;
+        border-radius: 10px;
+       
+}
+
+section table {
+
+    margin: auto;
+    background-color: #e9ddcd;
+    padding: 5px;
+    width: 100%;
+     
+}
+
+td,th{
+
+  text-align: center;
+  padding: 5px;
+}
+
+fieldset{
+
+    border-radius: 10px;
+
+    legend{
+        text-align: center;
+        font-size: 20px;
+    }
+
+}
+
+button{
+        
+        background-color: #fff6d9;
+        display: inline-block;
+        color: #3a1e22;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        border-radius: 8px;
+        padding: 10px 20px;
+        
+}
+
+button:hover{
+
+    background-color: #3a1e22;
+    color: #fff6d9;
+
+}
+
+label{
+
+        color: #e1c480;
+        
+}
+
+label input{
+
+    border: 1px;
+    border-radius: 10px;
+
+}
+
+
+
