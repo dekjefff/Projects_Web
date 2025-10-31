@@ -81,3 +81,5 @@
 
    * Linter/Formatter: ติดตั้งและใช้ ESLint และ Prettier ในโปรเจกต์ เพื่อจัดระเบียบโค้ด, ตรวจจับ error ง่ายๆ และบังคับใช้ style
       guide เดียวกัน (เช่น การใช้ single/double quote, การเว้นวรรค)
+
+git test pull and test push
