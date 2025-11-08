@@ -1,0 +1,35 @@
+/* --- ส่วนเพิ่มเติมสำหรับ Register/Forgot Pass ใน User_Login.css --- */
+
+/* 1. จัดรูปแบบ Label ที่อยู่เหนือ Input */
+/* หมายเหตุ: โค้ดนี้ถูกนำกลับมาที่นี่ หากคุณต้องการให้ Label มีสไตล์เดียวกัน
+   ทั้งหน้า Login, Register, และ Forgot Pass (ตามภาพตัวอย่าง) 
+   หากคุณใช้ไฟล์ Forgot.css แล้ว คุณต้องนำโค้ดนี้กลับมารวมใน User_Login.css 
+   และลบออกจาก Forgot.css (ถ้ามี)
+*/
+.input-label {
+    /* สีข้อความ Label ภายในกล่องสีเข้ม (#383633) */
+    color: #f5f0e3; 
+    
+    /* การจัดเรียงและขนาด */
+    text-align: left; 
+    display: block; 
+    font-size: 0.9em; 
+    font-weight: 500; 
+    
+    /* ระยะห่างด้านบนและด้านล่างเพื่อให้แยกจากองค์ประกอบอื่นชัดเจน */
+    margin: 15px 0 5px 0; 
+    padding-left: 5px; 
+}
+
+/* 2. จัดการระยะห่างระหว่าง Label และ Input (เพื่อให้ดูเหมือนในภาพ) */
+.login-form {
+    /* ลดระยะห่างรวมระหว่างองค์ประกอบต่างๆ ในฟอร์ม */
+    gap: 0px; 
+}
+
+/* 3. หากคุณใช้ Logo Placeholder แทนรูปภาพ */
+.logo-section .logo-placeholder {
+    /* จัดสไตล์ตัวอักษรของ Logo Placeholder ให้ดูดี */
+    color: #d1b87a; 
+    margin-bottom: 25px;
+}
