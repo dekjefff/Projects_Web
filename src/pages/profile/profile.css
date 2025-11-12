@@ -1,0 +1,200 @@
+/* กำหนดฟอนต์และพื้นหลังหลัก */
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    font-family: sans-serif; /* ปรับเปลี่ยนตามฟอนต์จริงที่คุณใช้ */
+    background-color: #f7f3ed; /* สีพื้นหลังอ่อนๆ คล้ายในรูป */
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ----------------- Header Section ----------------- */
+.profile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    border-bottom: 1px solid #c9b4a4; /* เส้นคั่นสีน้ำตาลอ่อน */
+}
+
+.header-text {
+    /* "Profile" text on the top left, but it's very subtle */
+    font-size: 0.9em;
+    color: #666;
+    opacity: 0.5; 
+}
+
+.logo-section {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.logo-diamond {
+    font-size: 1.5em;
+    color: #ccaa00; /* สีเหลืองทองสำหรับเพชร */
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    text-align: center;
+}
+
+.logo-main {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #4e3e33; /* สีน้ำตาลเข้ม */
+}
+
+.logo-sub {
+    font-size: 0.6em;
+    color: #a08a74; /* สีน้ำตาลอ่อนลง */
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* ----------------- Content Section ----------------- */
+.profile-content {
+    padding: 40px 40px 80px 40px;
+    flex-grow: 1;
+}
+
+.profile-title {
+    font-size: 2em;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.profile-subtitle {
+    font-size: 1em;
+    color: #666;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #c9b4a4; /* เส้นคั่น */
+    width: 100%; /* ให้เส้นคั่นเต็มความกว้าง */
+}
+
+/* รายละเอียดข้อมูล */
+.profile-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* ระยะห่างระหว่างแต่ละแถวข้อมูล */
+}
+
+.detail-row {
+    display: flex;
+    align-items: center;
+    padding-bottom: 5px;
+}
+
+.detail-label {
+    flex: 0 0 200px; /* กำหนดความกว้างคงที่สำหรับ label */
+    font-size: 1em;
+    color: #333;
+    margin-right: 20px;
+    font-weight: 500;
+}
+
+.detail-value {
+    flex-grow: 1;
+    font-size: 1em;
+    font-weight: bold;
+    color: #555;
+}
+
+.email-value, .address-value {
+    font-weight: normal; /* ทำให้ค่าอีเมลและที่อยู่เป็นตัวอักษรปกติ */
+}
+
+/* Gender Row Styling */
+.gender-row {
+    align-items: flex-start; /* จัดเรียงด้านบนสำหรับช่องเพศ */
+}
+
+.gender-options {
+    display: flex;
+    gap: 30px;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 1em;
+    color: #555;
+    font-weight: normal;
+}
+
+.radio-option input[type="radio"] {
+    /* กำหนดสไตล์ให้ Radio Button ใกล้เคียงในรูป */
+    appearance: none;
+    -webkit-appearance: none;
+    width: 15px;
+    height: 15px;
+    border: 2px solid #c9b4a4; /* สีขอบ */
+    border-radius: 50%;
+    margin-right: 8px;
+    position: relative;
+    outline: none;
+}
+
+.radio-option input[type="radio"]:checked {
+    border-color: #4e3e33; /* สีขอบเมื่อถูกเลือก */
+}
+
+.radio-option input[type="radio"]:checked::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background-color: #4e3e33; /* จุดตรงกลาง */
+}
+
+
+/* ----------------- Footer Section ----------------- */
+.profile-footer {
+    background-color: #38332d; /* สีพื้นหลัง Footer คล้ายในรูป */
+    color: #ccc;
+    padding: 30px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.footer-links {
+    display: flex;
+    gap: 30px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.footer-links span {
+    cursor: pointer;
+}
+
+.copyright {
+    align-self: flex-end; /* จัดให้อยู่ด้านล่าง */
+}
+
+.follow-us {
+    text-align: right;
+}
+
+.social-icons {
+    margin-top: 5px;
+    font-size: 1.2em;
+    display: flex;
+    gap: 15px;
+    justify-content: flex-end;
+}

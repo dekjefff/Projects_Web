@@ -1,0 +1,214 @@
+/* --- Global & Layout Styles --- */
+.shipping-container {
+    padding: 40px;
+    background-color: #f5f0e1; /* Light beige background */
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    position: relative;
+    padding-bottom: 120px; /* Space for fixed footer */
+}
+
+.logo {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 24px;
+    font-weight: 300;
+    color: #a78a7b; /* A soft brown/gold color */
+}
+
+.logo span {
+    font-size: 16px;
+    display: block;
+    font-weight: normal;
+}
+
+.header-section {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 32px;
+    font-weight: normal;
+    color: #333;
+    margin: 0;
+}
+
+.subtitle {
+    font-size: 14px;
+    color: #666;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+    margin: 10px 0 20px 0;
+}
+
+/* --- Address Management Section --- */
+.my-address-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.my-address-text {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.add-button {
+    background-color: #d8c4a9; /* Light gold/beige button */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    color: #6c5549; /* Darker text on button */
+    transition: background-color 0.2s;
+}
+
+.add-button:hover {
+    background-color: #cbb69e;
+}
+
+.address-box {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    /* Removed border to match the first image where the content is inline */
+    /* border: 1px solid #eee; */ 
+    border-radius: 5px;
+    /* background-color: #fff; */ 
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.address-line {
+    margin-bottom: 5px;
+    line-height: 1.4;
+    color: #333;
+}
+
+/* --- Modal/Pop-up Styles --- */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 30px 40px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    /* Blue border for visibility in the second image */
+    border: 3px solid #6aa5c7; 
+}
+
+.modal-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.input-group {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+.input-field,
+.full-width-input {
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9; 
+    box-sizing: border-box; /* Include padding in the element's total width/height */
+}
+
+.input-field {
+    flex: 1;
+}
+
+.full-width-input {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.text-area-field {
+    min-height: 80px;
+    resize: none;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.cancel-button {
+    background-color: #fff;
+    color: #333;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.cancel-button:hover {
+    background-color: #eee;
+}
+
+.save-button {
+    background-color: #d8c4a9; 
+    color: #6c5549;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.2s;
+}
+
+.save-button:hover {
+    background-color: #cbb69e;
+}
+
+
+/* --- Footer Styles --- */
+.site-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.footer-links span {
+    margin-right: 20px;
+    cursor: pointer;
+}
+
+.follow-us span {
+    margin-left: 10px;
+    /* Placeholder for icons */
+}

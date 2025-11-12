@@ -1,0 +1,32 @@
+/* --- Styles for Label and Validation Feedback (เฉพาะ Forgot_Pass) --- */
+
+/* 1. Styling สำหรับ Label (Email, Password, Confirm password) */
+.input-label {
+    /* เนื่องจาก Label อยู่ในกล่องสีเข้ม (#383633) จึงต้องใช้สีข้อความอ่อน */
+    color: #f5f0e3;
+    
+    /* การจัดเรียงและขนาด */
+    text-align: left; 
+    display: block; 
+    font-size: 0.9em; 
+    font-weight: 500; 
+    
+    /* ระยะห่างด้านบนและด้านล่าง */
+    margin: 15px 0 5px 0; 
+    padding-left: 5px; 
+}
+
+/* 2. คลาสสำหรับ Feedback การตรวจสอบรหัสผ่าน (Validation) */
+
+/* หากรหัสผ่านไม่ตรงกัน (Invalid): ให้แสดงขอบสีแดง */
+.input-group.is-invalid {
+    border: 2px solid #e44d26 !important; 
+    /* ปรับ padding เพื่อชดเชยความหนาของ border */
+    padding: 8px 13px !important; 
+}
+
+/* หากรหัสผ่านตรงกัน (Valid): ให้แสดงขอบสีเขียว */
+.input-group.is-valid {
+    border: 2px solid #66ff99 !important; 
+    padding: 8px 13px !important;
+}

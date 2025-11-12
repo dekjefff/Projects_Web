@@ -1,0 +1,16 @@
+import { StrictMode } from 'react'
+import { createRoot } from 'react-dom/client'
+import './index.css'
+import App from './App.jsx'
+
+// 💥 แก้ไข: Import Web Components ทั้งหมดที่นี่
+import "./components/footer-Login.js"; 
+import "./components/footer-Main.js"; 
+import "./components/Top-Nav-bar.js";
+import "./components/Nav-Logo.js";
+
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>,
+)
