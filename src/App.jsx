@@ -16,7 +16,8 @@ function App() {
     // ต้องห่อหุ้มด้วย <BrowserRouter>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<User_Login />} /> 
+        {/* เปลี่ยนpath login เป็น user */}
+        <Route path="/login/user" element={<User_Login />} /> 
         <Route path="/login" element={<User_Login />} /> 
         <Route path="/Register_login" element={<Register_login />} />
         <Route path="/Forgot_Pass" element={<Forgot_Pass />} />
