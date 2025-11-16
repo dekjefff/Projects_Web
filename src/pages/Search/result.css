@@ -1,0 +1,114 @@
+/* --- Search Results Design Styles (Result.jpg) --- */
+
+.search-results-page {
+    max-width: 1400px; /* ขยายความกว้างตามดีไซน์ */
+    margin: 0 auto;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.result-hero-image {
+    width: 100%;
+    height: 400px; /* ความสูงของ Hero Image */
+    background-image: url('placeholder-hero.jpg'); /* แทนที่ด้วย URL รูปภาพจริง */
+    background-size: cover;
+    background-position: center;
+    margin-bottom: 20px;
+}
+
+.product-listing-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    margin-bottom: 10px;
+}
+
+.listing-title {
+    font-size: 1.2em;
+    font-weight: normal;
+    color: #333;
+}
+
+.search-summary-text {
+    font-size: 0.8em;
+    color: #888;
+}
+
+.sort-select {
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.divider-line {
+    border: 0;
+    height: 1px;
+    background-color: #eee;
+    margin: 10px 0 20px 0;
+}
+
+/* --- Product Grid & Card Styles (4 Columns) --- */
+.product-grid {
+    display: grid;
+    /* 4 คอลัมน์ (หรือปรับตามขนาดหน้าจอ) */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 20px;
+    padding: 0 20px;
+    margin-bottom: 40px;
+}
+
+.product-card-result {
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-image-wrapper {
+    /* พื้นหลังสีเทาอ่อน/ขาวตามภาพ Result.jpg */
+    background-color: #f8f8f8; 
+    padding: 20px; 
+    border-radius: 4px;
+    overflow: hidden;
+    /* เพื่อให้ขยายเต็มพื้นที่คอลัมน์ */
+    height: auto; 
+}
+
+.product-image-result {
+    width: 100%;
+    height: 250px; /* ปรับความสูงตามต้องการ */
+    object-fit: contain;
+    transition: transform 0.3s;
+}
+
+.product-info-result {
+    padding-top: 10px;
+}
+
+.product-brand {
+    font-size: 0.7em;
+    color: #555;
+    margin: 0;
+}
+
+.product-name-result {
+    font-size: 0.9em;
+    font-weight: bold; /* ชื่อสินค้าเป็นตัวหนา */
+    margin: 2px 0;
+}
+
+.product-price-result {
+    font-size: 0.85em;
+    color: #333;
+    font-weight: bold;
+    margin: 2px 0;
+}
+
+.middle-banner {
+    width: 100%;
+    height: 400px; /* ความสูงของ Banner คั่นกลาง */
+    background-image: url('placeholder-middle-banner.jpg'); /* แทนที่ด้วย URL รูปภาพจริง */
+    background-size: cover;
+    background-position: center;
+    margin: 40px 0;
+}

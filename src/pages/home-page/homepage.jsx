@@ -1,172 +1,166 @@
 import React, { useState, useEffect } from 'react';
-import './homepage.css';
 
-// --- 1. Import ProductCard จากไฟล์อื่น ---
-import ProductCard from '../../components/ProductCard'; 
-// --- 3. Component หลัก ---
-const ErosHomePage = () => { // หรือชื่อ Component ของคุณ
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [bestOption, setBestOption] = useState('best summer for men');
-  const [selectedBrand, setSelectedBrand] = useState('Creed'); 
+// ตัวอย่างจำลองการเรียก API (ในความเป็นจริงจะเรียกไปที่ http://localhost:3030/api/...)
+const API_BASE_URL = 'http://localhost:3030/api/homepage';
 
-  // --- fetchData 
-  const fetchData = async () => {
-    try {
-      const productsRes = await fetch('http://localhost:3030/api/products');
-      const productsData = await productsRes.json();
-      
-      // (ตัวอย่างข้อมูลชั่วคราว - ถูกต้องแล้ว)
-      const bannerData = {
-        title: 'Le Male Elixir',
-        subtitle: 'Absolu Parfum Intense',
-        imageUrl: `http://localhost:3030/images/main_banner.jpg`,
-      };
-      const genderBannersData = {
-        men: `http://localhost:3030/images/for_men.jpg`,
-        women: `http://localhost:3030/images/for_women.jpg`,
-      };
+// ข้อมูลจำลองสำหรับตัวอย่าง
+const DUMMY_PRODUCTS = [
+  { product_ID: 1, product_name: 'Aventus', price: '12000', image_url: 'product1.jpg', brand_name: 'Creed' },
+  { product_ID: 2, product_name: 'Elysium', price: '9500', image_url: 'product2.jpg', brand_name: 'Roja' },
+  { product_ID: 3, product_name: 'Baccarat', price: '15000', image_url: 'product3.jpg', brand_name: 'MFK' },
+  // ... เพิ่มข้อมูลสินค้าอื่นๆ
+];
 
-      const apiData = {
-        banner: bannerData,
-        products: productsData, 
-        genderBanners: genderBannersData,
-      };
-      setData(apiData);
-    
-    } catch (error) {
-      console.error("Failed to fetch data:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
+const DUMMY_BRANDS = ['Creed', 'Chanel', 'Dior', 'Gucci'];
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+/**
+ * 💡 ฟังก์ชันจำลองการเรียก API
+ * ในโปรเจกต์จริง คุณจะต้องเปลี่ยนไปใช้ `fetch` หรือ Axios และจัดการกับ Error Handling
+ */
+const fetchProducts = async (endpoint, params) => {
+  console.log(`Calling API: ${endpoint}`, params);
   
-
-  if (loading) {
-    return <div>Loading...</div>; 
+  // จำลองการกรองข้อมูลตาม API Logic
+  if (endpoint.includes('brand')) {
+    const brand = params.get('frombrand');
+    return DUMMY_PRODUCTS.filter(p => p.brand_name === brand);
+  }
+  
+  if (endpoint.includes('category')) {
+    const season = params.get('category_season');
+    const sex = params.get('category_sex');
+    // ในฐานข้อมูลจริง จะเป็นการ JOIN และ WHERE ตามที่ Controller ทำงาน
+    console.log(`Filtering for ${season} ${sex}`);
+    return DUMMY_PRODUCTS.slice(0, 3); // ส่งสินค้า 3 ชิ้นแรกเป็นตัวอย่าง
   }
 
-  // ---  2. กรองข้อมูล (เติม Logic ที่หายไป)  ---
-  const getBestProducts = (option) => {
-    if (!data) return [];
-    
-    // "best summer for men" -> parts[1] = "summer", parts[3] = "men"
-    const parts = option.split(' '); 
-    const season = parts[1];
-    const gender = parts[3];
+  return DUMMY_PRODUCTS;
+};
 
-    return data.products.filter(p => {
-      // ตรวจสอบเพศ (รองรับ unisex)
-      const isCorrectGender = p.gender === gender || p.gender === 'unisex';
+// --- Sub-Component สำหรับแสดงสินค้า ---
+const ProductCard = ({ product }) => (
+  <div className="product-card">
+    <img src={`/images/${product.image_url}`} alt={product.product_name} />
+    <p className="product-name">**{product.product_name}**</p>
+    <p className="product-price">{product.price} THB</p>
+  </div>
+);
+
+// --- Component หลัก ---
+const HomePage = () => {
+  const [bannerIndex, setBannerIndex] = useState(0);
+  const [brandProducts, setBrandProducts] = useState([]);
+  const [selectedBrand, setSelectedBrand] = useState(DUMMY_BRANDS[0]);
+  const [categoryProducts, setCategoryProducts] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('Best Summer Men');
+  
+  const bannerImages = ['banner1.jpg', 'banner2.jpg', 'banner3.jpg'];
+
+  // 1. Logic สำหรับ Dynamic Banner
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setBannerIndex(prevIndex => (prevIndex + 1) % bannerImages.length);
+    }, 5000); // เปลี่ยนรูปทุก 5 วินาที
+    return () => clearInterval(interval);
+  }, []);
+
+  // 2. Logic สำหรับ Recommend by Brand
+  useEffect(() => {
+    const loadBrandProducts = async () => {
+      const params = new URLSearchParams({ frombrand: selectedBrand });
+      // URL: /api/homepage/brand?frombrand=SelectedBrand
+      const products = await fetchProducts(`${API_BASE_URL}/brand`, params);
+      setBrandProducts(products);
+    };
+    loadBrandProducts();
+  }, [selectedBrand]);
+
+  // 3. Logic สำหรับ Recommend by Category (Men/Women & Season)
+  useEffect(() => {
+    const loadCategoryProducts = async () => {
+      // แยก season และ sex จาก string ที่เลือก
+      const parts = selectedCategory.split(' ');
+      const category_season = parts[1]; // เช่น 'Summer' หรือ 'Winter'
+      const category_sex = parts[2];     // เช่น 'Men' หรือ 'Women'
       
-      // ตรวจสอบฤดู (ต้องมี isSummerBest, isWinterBest ใน API response)
-      let isCorrectSeason = false;
-      if (season === 'summer') {
-        isCorrectSeason = p.isSummerBest; 
-      } else if (season === 'winter') {
-        isCorrectSeason = p.isWinterBest; 
-      }
-      
-      return isCorrectGender && isCorrectSeason;
-    });
-  };
-
-  const allBrands = data ? [...new Set(data.products.map(p => p.brand))] : [];
-  const filteredBrandProducts = data ? data.products.filter(p => p.brand === selectedBrand) : [];
-  const bestProducts = data ? getBestProducts(bestOption) : [];
-  const bestOptionsList = [
-    'best summer for men', 
-    'best summer for women', 
-    'best winter for men', 
-    'best winter for women'
-  ];
-
-
-  //  3. ส่วน Return JSX (เติมเนื้อหาที่หายไป)  ---
+      const params = new URLSearchParams({ category_season, category_sex });
+      // URL: /api/homepage/category?category_season=...&category_sex=...
+      const products = await fetchProducts(`${API_BASE_URL}/category`, params);
+      setCategoryProducts(products);
+    };
+    loadCategoryProducts();
+  }, [selectedCategory]);
   return (
-    <div className="eros-page-container">
-      <navlogo-component />
-      <main className="eros-home-page">
-        
-        {/* Banner โฆษณารูปใหญ่ */}
-        <section className="main-banner" style={{ backgroundImage: `url(${data.banner.imageUrl})` }}>
-          <div className="banner-content">
-            <h1>{data.banner.title}</h1>
-            <h2>{data.banner.subtitle}</h2>
-          </div>
-        </section>
-        
-        <hr/>
-        
-        {/* From Brand (Dropdown) */}
-        <section className="product-section">
-          <div className="section-header">
-            <h3>From Brand</h3>
-            <select 
-              value={selectedBrand} 
-              onChange={(e) => setSelectedBrand(e.target.value)}
-              className="section-select" 
-            >
-              {allBrands.map(brand => (
-                <option key={brand} value={brand}>{brand}</option>
-              ))}
-            </select>
-          </div>
-          <div className="product-list">
-            {filteredBrandProducts.map(product => (
-              <ProductCard key={product.id} product={product} />
+    <div className="homepage-container">
+      
+      {/* 1. Dynamic Banner */}
+      <div className="banner-section">
+        <img 
+          src={`/images/${bannerImages[bannerIndex]}`} 
+          alt="Banner Ad" 
+          className="dynamic-banner-img"
+        />
+        <div className="banner-dots">
+          {bannerImages.map((_, index) => (
+            <span key={index} className={index === bannerIndex ? 'active' : ''}></span>
+          ))}
+        </div>
+      </div>
+
+      <hr />
+
+      {/* 2. Recommend by Brand  */}
+      <section className="product-section brand-section">
+        <h2> แนะนำสินค้าจากแบรนด์ {selectedBrand}</h2>
+        <div className="form-creed">
+          <label htmlFor="brand-select">Select Brand: </label>
+          <select 
+            id="brand-select"
+            value={selectedBrand} 
+            onChange={(e) => setSelectedBrand(e.target.value)}
+          >
+            {DUMMY_BRANDS.map(brand => (
+              <option key={brand} value={brand}>{brand}</option>
             ))}
-          </div>
-        </section>
-        
-        <hr/>
-        
-        {/* For Men / For Women */}
-        <section className="gender-banners-section">
-          <div className="gender-banner men" style={{ backgroundImage: `url(${data.genderBanners.men})` }}>
-            <div className="overlay-text">For Men</div>
-          </div>
-          <div className="gender-banner women" style={{ backgroundImage: `url(${data.genderBanners.women})` }}>
-            <div className="overlay-text">For Women</div>
-          </div>
-        </section>
-        
-        <hr/>
-        
-        {/*  Best For */}
-        <section className="product-section best-for-section">
-          <div className="section-header">
-            <label htmlFor="best-option"><h3>{bestOption.toUpperCase()} ⌄</h3></label>
-            <select 
-              id="best-option" 
-              value={bestOption} 
-              onChange={(e) => setBestOption(e.target.value)}
-              className="section-select" 
-            >
-              {bestOptionsList.map(option => (
-                <option key={option} value={option}>{option.charAt(0).toUpperCase() + option.slice(1)}</option>
-              ))}
-            </select>
-          </div>
-          <div className="product-list">
-            {bestProducts.length > 0 ? (
-              bestProducts.map(product => (
-                <ProductCard key={product.id} product={product} />
-              ))
-            ) : (
-              <p>No products found for {bestOption}.</p>
-            )}
-          </div>
-        </section>
-        
-      </main>
-      <footer-main-component />
+          </select>
+        </div>
+        <div className="product-list">
+          {brandProducts.map(p => <ProductCard key={p.product_ID} product={p} />)}
+        </div>
+      </section>
+
+      <hr />
+
+      {/* 3. Recommend by Category  */}
+      <section className="product-section category-section">
+        <h2> หมวดหมู่แนะนำ: {selectedCategory}</h2>
+        <div className="category-dropdown">
+          <select 
+            value={selectedCategory} 
+            onChange={(e) => setSelectedCategory(e.target.value)}
+          >
+            {['Best Summer Men', 'Best Summer Women', 'Best Winter Men', 'Best Winter Women'].map(category => (
+              <option key={category} value={category}>{category}</option>
+            ))}
+          </select>
+        </div>
+        <div className="product-list">
+          {categoryProducts.map(p => <ProductCard key={p.product_ID} product={p} />)}
+        </div>
+      </section>
+
+      {/* 4. Recommend by Gender  */}
+      <section className="product-section gender-section">
+        <h2>🚻 สินค้าสำหรับ สุภาพบุรุษ/สุภาพสตรี</h2>
+        <p className="note">ส่วนนี้จะแสดงผลสินค้าเพศ Men โดยตั้งค่าฤดูเป็น Summer </p>
+        <div className="product-list">
+          {/* ดึงสินค้า for Men/Women โดยตรง  */}
+          {DUMMY_PRODUCTS.slice(1,4).map(p => <ProductCard key={p.product_ID} product={p} />)}
+        </div>
+      </section>
+      
     </div>
   );
 };
 
-export default ErosHomePage;
+export default HomePage;
