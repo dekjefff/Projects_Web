@@ -11,6 +11,7 @@ import Forgot_Pass from './pages/Login/Forgot/Forgot.jsx'; // ตรวจสอ
 import Admin_Login from './pages/Login/Admin_login/Admin.jsx';
 import ShippingAddress from './pages/Cart/Shipping address/ShippingAddress.jsx';
 import TeamDev from './pages/Team/teamprofile.jsx';
+import ErosHomePage from './pages/home-page/homepage.jsx';
 function App() {
   return (
     // ต้องห่อหุ้มด้วย <BrowserRouter>
@@ -23,9 +24,9 @@ function App() {
         <Route path="/Admin_Login" element={<Admin_Login/>}/>
         <Route path="/ShippingAddress" element={<ShippingAddress/>}/>
         <Route path="/TeamDev" element={<TeamDev/>}/>
+        <Route path="/HomePage" element={<ErosHomePage/>}/>
       </Routes>
     </BrowserRouter>
   );
 }
-
 export default App;

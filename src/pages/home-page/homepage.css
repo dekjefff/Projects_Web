@@ -1,0 +1,172 @@
+/* --- 1. Global & Variables --- */
+:root {
+  --bg-cream: #F5F0E9;
+  --bg-dark: #1A1A1A;
+  --text-dark: #222222;
+  --text-light: #FFFFFF;
+  --text-grey: #555555;
+  --border-light: #DDDDDD;
+}
+
+/* --- 2. Main Page Layout --- */
+.eros-page-container {
+  /* This container wraps Navbar, main, and Footer */
+  width: 100%;
+}
+
+.eros-home-page {
+  background-color: var(--bg-cream);
+  color: var(--text-dark);
+  max-width: 1400px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 0 2rem; /* เว้นขอบซ้ายขวา */
+}
+
+hr {
+  border: 0;
+  height: 1px;
+  background-color: var(--border-light);
+  margin: 3rem 0; /* เว้นระยะห่างระหว่าง Section */
+}
+
+/* --- 3. Section 1: Main Banner --- */
+.main-banner {
+  height: 70vh;
+  min-height: 450px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 5%;
+  background-size: cover;
+  background-position: center;
+  color: var(--text-light);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.banner-content h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+}
+
+.banner-content h2 {
+  font-size: 1.8rem;
+  font-weight: 400;
+  margin-top: 0.5rem;
+}
+
+/* --- 4. Section 2 & 4: Product Section Layout --- */
+.product-section h3 {
+  font-size: 1.8rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.product-section h3 strong {
+  font-weight: 700;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+/* --- 5. Section 3: Gender Banners (Men/Women) --- */
+.gender-banners-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.gender-banner {
+  height: 450px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 2rem;
+  border-radius: 8px;
+  position: relative;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.gender-banner .overlay-text {
+  color: var(--text-light);
+  font-size: 2.2rem;
+  font-weight: 500;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+  z-index: 2;
+}
+
+.gender-banner .overlay-text strong {
+  font-weight: 700;
+}
+
+/* Overlay มืดๆ ด้านล่าง */
+.gender-banner::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background: linear-gradient(0deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0) 100%);
+  z-index: 1;
+}
+
+/* --- 6. Dropdown Headers (Brand & Best For) --- */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.section-header h3 {
+  margin-bottom: 0;
+}
+
+.section-select {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #CCC;
+  border-radius: 4px;
+  background-color: #FFFFFF;
+  cursor: pointer;
+  min-width: 220px;
+}
+
+/* --- 7. Responsive Design --- */
+@media (max-width: 992px) {
+  .eros-home-page {
+    padding: 0 1rem;
+  }
+  .product-list {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  }
+  .gender-banners-section {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .main-banner {
+    height: 45vh;
+    text-align: center;
+    justify-content: center;
+  }
+  .product-list {
+    grid-template-columns: 1fr; /* 1 คอลัมน์บนมือถือ */
+  }
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .section-select {
+    width: 100%;
+  }
+}
