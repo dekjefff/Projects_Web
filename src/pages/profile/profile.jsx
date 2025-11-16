@@ -69,8 +69,6 @@ const ProfileCard = ({ user }) => {
           </div>
         </div>
       </div>
-
-      {/* Footer */}
         <footer-main-component />
     </div>
   );
