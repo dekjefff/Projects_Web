@@ -1,0 +1,226 @@
+/* =============================== */
+/*   EDIT PRODUCT PAGE - PREFIX: edit_ */
+/* =============================== */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto;
+    background: linear-gradient(180deg, #8980DA 100%, #C9B8FF 60%);
+    color: black;
+    line-height: 1.5;
+}
+
+/* WRAPPER */
+.edit_container {
+    max-width: 1100px;
+    margin: 24px auto;
+    padding: 0 16px;
+}
+
+.edit_app {
+    background: transparent;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+/* HEADER */
+.edit_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    background: rgba(255, 255, 255, .02);
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(6px);
+}
+
+.edit_header h1 {
+    font-size: 20px;
+    margin: 0;
+    color: black;
+}
+
+.edit_tag {
+    font-size: 12px;
+    color: black;
+}
+
+.edit_tabs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.edit_tab_btn {
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: #BEBEBE;
+    cursor: pointer;
+    transition: .15s ease;
+    font-weight: 600;
+    border: none;
+}
+
+.edit_tab_btn[aria-selected="true"],
+.edit_tab_btn:hover {
+    border-color: #22c55e;
+    box-shadow: 0 0 0 3px #22c55e55;
+}
+
+.edit_tab_btn[disabled] {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+/* MAIN */
+.edit_main {
+    padding: 20px;
+}
+
+/* FORM ELEMENTS */
+.edit_btn {
+    border: none;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #D9D9D9;
+    transition: .15s ease;
+}
+
+.edit_btn:hover {
+    filter: brightness(1.15);
+}
+
+.edit_btn_primary {
+    background: #2861FD;
+    color: black;
+}
+
+.edit_btn_danger {
+    background: #FF0000;
+    color: black;
+}
+
+.edit_btn_ghost {
+    background: #D9D9D9;
+}
+
+/* INPUT */
+.edit_input,
+.edit_select,
+.edit_textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #BEBEBE;
+    border: none;
+    outline: none;
+}
+
+.edit_textarea {
+    min-height: 92px;
+}
+
+.edit_input:focus,
+.edit_select:focus,
+.edit_textarea:focus {
+    border-color: #22c55e;
+    box-shadow: 0 0 0 3px #22c55e55;
+}
+
+/* GRID */
+.edit_grid {
+    display: grid;
+    gap: 14px;
+}
+
+.edit_cols_2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.edit_cols_3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+@media (max-width:820px) {
+    .edit_cols_2,
+    .edit_cols_3 {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* CARD */
+.edit_card {
+    background: #D9D9D9;
+    border-radius: 16px;
+    padding: 16px;
+}
+
+.edit_card h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
+    color: black;
+}
+
+.edit_helper {
+    font-size: 12px;
+    color: black;
+}
+
+/* MODAL */
+.edit_modal_backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.55);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 50;
+}
+
+.edit_modal {
+    width: min(520px, 100%);
+    background: #de8484;
+    border-radius: 18px;
+    padding: 18px;
+}
+
+.edit_modal header {
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+}
+
+.edit_modal h3 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.edit_modal_actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.show {
+    display: flex !important;
+}
+
+/* PAGE BUTTONS */
+.edit_pagebutton {
+    grid-column: 1 / -1;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}

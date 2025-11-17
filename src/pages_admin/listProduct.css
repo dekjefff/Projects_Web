@@ -1,0 +1,328 @@
+/* ========================= */
+/* PRODUCT LIST (React)      */
+/* PREFIX: prod_             */
+/* ========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans", "Helvetica Neue", Arial;
+    background: linear-gradient(180deg, #8980DA 100%, #C9B8FF 60%);
+    color: #e5e7eb;
+    line-height: 1.5;
+}
+
+/* Shell */
+.prod_shell {
+    max-width: 1100px;
+    margin: 24px auto;
+    padding: 0 16px;
+}
+
+.prod_app {
+    background: transparent;
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+/* Header */
+.prod_header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    background: rgba(255, 255, 255, .02);
+    position: sticky;
+    top: 0;
+    backdrop-filter: blur(6px);
+}
+
+.prod_title {
+    font-size: 20px;
+    margin: 0;
+    letter-spacing: .3px;
+    color: black;
+}
+
+.prod_tag {
+    font-size: 12px;
+    color: black;
+}
+
+/* Tabs */
+.prod_tabs {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.prod_tab_btn {
+    appearance: none;
+    padding: 10px 14px;
+    border-radius: 12px;
+    background: #BEBEBE;
+    color: #06210f;
+    cursor: pointer;
+    transition: .15s ease;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.prod_tab_btn[aria-selected="true"],
+.prod_tab_btn:hover {
+    border-color: #22c55e;
+    box-shadow: 0 0 0 3px #22c55e55;
+}
+
+.prod_tab_btn:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+}
+
+/* Main */
+.prod_main {
+    padding: 20px;
+}
+
+/* Toolbar */
+.prod_toolbar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    margin: 8px 0 16px;
+}
+
+.prod_spacer {
+    flex: 1;
+}
+
+.prod_btn {
+    appearance: none;
+    border: none;
+    background: #D9D9D9;
+    color: black;
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .15s ease;
+}
+
+.prod_btn:hover {
+    filter: brightness(1.15);
+}
+
+.prod_btn_primary {
+    background: #2861FD;
+    color: #06210f;
+}
+
+.prod_btn_primary:hover {
+    background: #16a34a;
+    color: #03180b;
+}
+
+.prod_btn_danger {
+    background: #FF0000;
+    color: black;
+}
+
+/* Inputs */
+.prod_input,
+.prod_select,
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: #D9D9D9;
+    color: black;
+    outline: none;
+    border: none;
+    transition: .15s ease;
+}
+
+.prod_input:focus,
+.prod_select:focus {
+    border-color: #22c55e;
+    box-shadow: 0 0 0 3px #22c55e55;
+}
+
+
+/* Card */
+.prod_card {
+    background: #D9D9D9;
+    border-radius: 16px;
+    padding: 16px;
+}
+
+/* Table */
+.prod_table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+}
+
+.prod_table thead th {
+    font-size: 12px;
+    font-weight: 700;
+    color: black;
+    text-transform: uppercase;
+    padding: 0 12px;
+}
+
+.prod_table tbody td {
+    background: #FFFFFF;
+    color: black;
+    border: 1px solid #1f2937;
+    padding: 12px;
+}
+
+.prod_table tbody tr td:first-child {
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+}
+
+.prod_table tbody tr td:last-child {
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/* Thumbnail */
+.prod_thumb {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 1px solid #26324a;
+}
+
+/* Status badge */
+.prod_status {
+    display: inline-flex;
+    padding: 6px 10px;
+    font-size: 12px;
+    border-radius: 999px;
+    font-weight: 700;
+}
+
+.prod_status.active {
+    background: rgba(34, 197, 94, .15);
+    color: #86efac;
+    border: 1px solid rgba(34, 197, 94, .35);
+}
+
+.prod_status.inactive {
+    background: rgba(148, 163, 184, .15);
+    color: #cbd5e1;
+    border: 1px solid rgba(148, 163, 184, .25);
+}
+
+.prod_status.archived {
+    background: rgba(245, 158, 11, .12);
+    color: #fde68a;
+    border: 1px solid rgba(245, 158, 11, .35);
+}
+
+/* Row actions */
+.prod_row_action {
+    display: flex;
+    gap: 6px;
+}
+
+/* Modal */
+.prod_modal_backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, .55);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    z-index: 50;
+}
+
+.prod_modal_backdrop.show {
+    display: flex;
+}
+
+.prod_modal {
+    width: min(520px, 100%);
+    background: #de8484;
+    border-radius: 18px;
+    padding: 18px;
+    color: black;
+}
+
+.prod_actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+/* === FIX SEARCH BAR TO MATCH HTML === */
+
+.prod_input {
+    max-width: 260px;
+    border: 1px solid #00000033 !important;
+    background: #d9d9d9;
+    border-radius: 10px;
+    padding: 10px 12px;
+    color: black;
+    font-size: 14px;
+}
+
+/* เวลา focus */
+.prod_input:focus {
+    box-shadow: 0 0 0 3px #22c55e55 !important;
+    border-color: #22c55e !important;
+}
+/* === ALIGN SEARCH BAR TO THE RIGHT === */
+
+.prod_toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+}
+
+/* ดันให้ช่องค้นหาไปด้านขวา */
+.prod_spacer {
+    flex: 1;
+}
+
+/* ช่องค้นหาเฉพาะตัวนี้ */
+.prod_search {
+    max-width: 260px !important;
+    width: 260px !important;
+    border: 1px solid #00000033 !important;
+    background: #d9d9d9;
+    border-radius: 10px;
+    padding: 10px 12px;
+    color: black;
+    font-size: 14px;
+    margin-left: auto;
+}
+
+/* เวลา focus */
+.prod_search:focus {
+    box-shadow: 0 0 0 3px #22c55e55 !important;
+    border-color: #22c55e !important;
+}
+
+/* ปรับ input อื่นๆ ไม่ให้ชน search */
+.prod_input {
+    width: 100%;
+    border: none;
+    background: #D9D9D9;
+    border-radius: 10px;
+    padding: 10px 12px;
+    color: black;
+}
