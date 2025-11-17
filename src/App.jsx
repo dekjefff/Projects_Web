@@ -12,15 +12,18 @@ import Admin_Login from './pages/Login/Admin_login/Admin.jsx';
 import ShippingAddress from './pages/Cart/Shipping address/ShippingAddress.jsx';
 import TeamDev from './pages/Team/teamprofile.jsx';
 import ErosHomePage from './pages/home-page/homepage.jsx';
+import UserManagement from './pages_admin/UserManagement.jsx';
+import UserAccounteditForm from './pages_admin/UserAccounteditForm.jsx';
+import ProductList from './pages_admin/ProductList.jsx';
+import AddProduct from './pages_admin/AddProduct.jsx';
 function App() {
   return (
     // ต้องห่อหุ้มด้วย <BrowserRouter>
     <BrowserRouter>
       <Routes>
         {/* เปลี่ยนpath login เป็น user */}
-        <Route path="/login/user" element={<User_Login />} /> 
         <Route path="/login" element={<User_Login />} /> 
-        <Route path="/Register_login" element={<Register_login />} />
+        <Route path="/Signin" element={<Register_login />} />
         <Route path="/Forgot_Pass" element={<Forgot_Pass />} />
         <Route path="/Admin_Login" element={<Admin_Login/>}/>
         <Route path="/ShippingAddress" element={<ShippingAddress/>}/>
