@@ -9,23 +9,34 @@ import Admin_Login from './pages/Login/Admin_login/Admin.jsx';
 import ShippingAddress from './pages/Cart/Shipping address/ShippingAddress.jsx';
 import TeamDev from './pages/Team/teamprofile.jsx';
 import ErosHomePage from './pages/home-page/homepage.jsx';
+import Detail from './pages/Datail/Datail.jsx';
 import SearchResultsPage from './pages/Search/Result.jsx';
 import SearchOverlay from './pages/Search/Search.jsx';
+import UserManagement from './pages_admin/UserManagement.jsx';
+import UserAccounteditForm from './pages_admin/UserAccounteditForm.jsx';
+import ProductList from './pages_admin/ProductList.jsx';
+import AddProduct from './pages_admin/AddProduct.jsx';
 function App() {
   return (
     // ต้องห่อหุ้มด้วย <BrowserRouter>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<User_Login />} /> 
+        {/* เปลี่ยนpath login เป็น user */}
         <Route path="/login" element={<User_Login />} /> 
-        <Route path="/Register_login" element={<Register_login />} />
+        <Route path="/Signin" element={<Register_login />} />
         <Route path="/Forgot_Pass" element={<Forgot_Pass />} />
         <Route path="/Admin_Login" element={<Admin_Login/>}/>
         <Route path="/ShippingAddress" element={<ShippingAddress/>}/>
         <Route path="/TeamDev" element={<TeamDev/>}/>
-        <Route path="/HomePage" element={<ErosHomePage/>}/>
+        <Route path="/" element={<ErosHomePage/>}/>
+        <Route path="/detail" element={<Detail/>}/>
         <Route path="/SearchResults" element={<SearchResultsPage/>}/>
-        <Route path="/SearchOverlay" element={<SearchOverlay/>}/>
+        <Route path="/Search" element={<SearchOverlay/>}/>
+        <Route path="/UserManagement" element={<UserManagement />} />
+        <Route path="/edit-user" element={<UserAccounteditForm />} />
+        <Route path="/ProductList" element={<ProductList />} />
+        <Route path="/AddProduct" element={<AddProduct />} />
+
       </Routes>
     </BrowserRouter>
   );

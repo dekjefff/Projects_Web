@@ -19,7 +19,7 @@ class NavbarTop extends HTMLElement {
                 <div class="nav-icons">
                     <div class="search-icon"><img src="src/assets/icon.png" alt="search" /></div>
                     <div class="bag-icon"><img src="src/assets/Bag_alt.png" alt="bag" /></div>
-                    <div class="login-icon"><img src="src/assets/Login.png" alt="Login" /></div>
+                    <div href="../pages/User_login/Login.jsx" class="login-icon"><img src="src/assets/Login.png" alt="Login" /></div>
                 </div>
             </div>
         `

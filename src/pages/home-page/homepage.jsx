@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-// ตัวอย่างจำลองการเรียก API (ในความเป็นจริงจะเรียกไปที่ http://localhost:3030/api/...)
+
 const API_BASE_URL = 'http://localhost:3030/api/homepage';
 
-// ข้อมูลจำลองสำหรับตัวอย่าง
-const DUMMY_PRODUCTS = [
-  { product_ID: 1, product_name: 'Aventus', price: '12000', image_url: 'product1.jpg', brand_name: 'Creed' },
-  { product_ID: 2, product_name: 'Elysium', price: '9500', image_url: 'product2.jpg', brand_name: 'Roja' },
-  { product_ID: 3, product_name: 'Baccarat', price: '15000', image_url: 'product3.jpg', brand_name: 'MFK' },
-  // ... เพิ่มข้อมูลสินค้าอื่นๆ
-];
 
 const DUMMY_BRANDS = ['Creed', 'Chanel', 'Dior', 'Gucci'];
 
@@ -148,7 +141,6 @@ const HomePage = () => {
           {categoryProducts.map(p => <ProductCard key={p.product_ID} product={p} />)}
         </div>
       </section>
-
       {/* 4. Recommend by Gender  */}
       <section className="product-section gender-section">
         <h2>🚻 สินค้าสำหรับ สุภาพบุรุษ/สุภาพสตรี</h2>

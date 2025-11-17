@@ -1,0 +1,52 @@
+/* Styling ส่วนหลักและ Product Header ยังคงเหมือนเดิม */
+
+.product-detail-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: sans-serif;
+}
+
+.product-header {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 40px;
+}
+
+.product-image-area {
+    width: 30%;
+    padding-right: 20px;
+}
+
+.product-main-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid #ccc;
+}
+
+/* ... (Styles สำหรับ product-info-area, product-name, product-price) ... */
+
+
+/* ส่วน Review */
+
+.average-rating-stars {
+    display: flex;
+    align-items: center;
+    font-size: 1.5em;
+    margin-right: 20px;
+}
+
+/* สไตล์สำหรับดาว */
+.star {
+    font-size: 1.2em; /* ปรับขนาดดาว */
+}
+.full-star {
+    color: black; /* สีดำ/น้ำเงินเข้ม ตามรูปต้นฉบับ */
+}
+.empty-star {
+    color: #ccc; 
+}
+
+
+/* ... (Styles สำหรับ review-item, review-text-box, etc. ยังคงเหมือนเดิม) ... */

@@ -16,27 +16,27 @@ app.use(cors());
 
 
 //create option for cors that allowed get post put delete method
-const corsOption = {
-    origin: function (origin, callback){
+// const corsOption = {
+//     origin: function (origin, callback){
 
-        if(!origin){
-            callback(null,true);
-        }else{
-            callback(new Error('Not allowed by CORS'))
-        }
-    },
-    methods: ['get','post','put','delete'],
-    credentials: true
-};
+//         if(!origin){
+//             callback(null,true);
+//         }else{
+//             callback(new Error('Not allowed by CORS'))
+//         }
+//     },
+//     methods: ['get','post','put','delete'],
+//     credentials: true
+// };
 
-app.use(cors(corsOption));
+// app.use(cors(corsOption));
 
 //Router to Product for controller
 const productRouter = require('./Product/productRouter');
 app.use(productRouter);
 
-// const accountRouter = require('./Account/accountRouter');
-// app.use(accountRouter);
+const accountRouter = require('./Account/accountRouter');
+app.use(accountRouter);
 
 
 
