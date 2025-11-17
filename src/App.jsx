@@ -26,6 +26,13 @@ function App() {
         <Route path="/ShippingAddress" element={<ShippingAddress/>}/>
         <Route path="/TeamDev" element={<TeamDev/>}/>
         <Route path="/HomePage" element={<ErosHomePage/>}/>
+
+        <Route path="/" element={<UserManagement />} />
+        <Route path="/UserManagement" element={<UserManagement />} />
+        <Route path="/edit-user" element={<UserAccounteditForm />} />
+        <Route path="/ProductList" element={<ProductList />} />
+        <Route path="/AddProduct" element={<AddProduct />} />
+           
       </Routes>
     </BrowserRouter>
   );
