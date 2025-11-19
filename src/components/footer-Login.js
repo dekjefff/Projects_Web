@@ -1,4 +1,6 @@
+import './footer-login.css';
 class footerLogin extends HTMLElement {
+
     constructor() {
         super();
     }
@@ -6,37 +8,27 @@ class footerLogin extends HTMLElement {
         this.innerHTML = `
             <footer class="site-footer">
                 <div class="footer-content">
-                    <div class="footer-links">
-                        <div class="link-group">
-                            <a href="#" class="footer-title">Services</a>
-                        </div>
-                        <div class="link-group">
-                            <a href="#" class="footer-title">Policy</a>
-                        </div>
-                        <div class="link-group">
-                            <a href="#" class="footer-title">Order</a>
-                        </div>
-                        <div class="link-group">
-                            <a href="/TeamDev" class="footer-title">Eros</a>
-                        </div>
-                        <div class="link-group">
-                            <a href="/Admin_Login" class="footer-title">Admin</a>
-                        </div>
-                    </div>
+                    <a href="#" class="footer-title">Services</a>
+                    <a href="#" class="footer-title">Policy</a>
+                    <a href="#" class="footer-title">Order</a>
+                    <a href="/TeamDev" class="footer-title">Eros</a>
+                    <a href="/Admin_Login" class="footer-title">Admin</a>
+                </div>
 
-                    <div class="footer-social">
-                        <p class="social-title">FOLLOW US</p>
-                        <div class="social-icons">
-                            <a href="#" class="social-icon">📷</a> 
-                            <a href="#" class="social-icon">𝐟</a> 
-                            <a href="#" class="social-icon">╳</a> 
-                            <a href="#" class="social-icon">🎶</a> </div>
+                <div class="footer-social">
+                    <div class="social-icons">
+                        <a href="#" class="social-icon">📷</a> 
+                        <a href="#" class="social-icon">𝐟</a> 
+                        <a href="#" class="social-icon">╳</a> 
+                        <a href="#" class="social-icon">🎶</a> </div>
                     </div>
                 </div>
 
                 <div class="footer-bottom">
                     <p class="copyright">© 2025 Eros. All rights reserved.</p>
                 </div>
+
+                <p class="social-title">FOLLOW US</p>
             </footer>
         `
     }
