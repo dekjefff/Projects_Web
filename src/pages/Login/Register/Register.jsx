@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import '../User_Login/User_Login.css';
 import './Register.css'; 
 import { useNavigate } from 'react-router-dom';
-import { ToastContainer, toast } from "react-toastify";
+// import { ToastContainer, toast } from "react-toastify";
 
-const showToast = toast();
+// const showToast = toast();
 
 const Register_login = () => {
   const [form, setForm] = useState({
@@ -12,6 +12,9 @@ const Register_login = () => {
     lastName: '',
     user_name: '',
     passwd: '',
+    phone: '',
+    email: '',
+    gender: '',
   });
 
   const [msg, setMsg] = useState('');
@@ -40,7 +43,7 @@ const Register_login = () => {
 
       setMsg(data.message || 'Registered successfully');
 
-      navigate('/login/user');
+      navigate('/login');
     } catch (error) {
       setMsg('Error: ' + error.message);
     }
@@ -93,6 +96,44 @@ const Register_login = () => {
                 value={form.user_name}
                 onChange={handleChange}
               />
+            </div>
+
+            <label className="input-label">Email</label>
+            <div className="input-group">
+              <input
+                type="email"
+                placeholder="Email"
+                required
+                className="input-field"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+              />
+              <span className="required-star">*</span>
+            </div>
+
+            <label className="input-label">Phone Number</label>
+            <div className="input-group">
+              <input
+                type="number"
+                placeholder="Phone"
+                required
+                className="input-field"
+                name="phone"
+                value={form.phone}
+                onChange={handleChange}
+              />
+              <span className="required-star">*</span>
+            </div>
+
+            <label className="input-label">Gender</label>
+            <div className="input-group">
+              <select name="gender"  onChange={handleChange} required>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+              </select>
+              <span className="required-star">*</span>
             </div>
 
             <label className="input-label">Password</label>
