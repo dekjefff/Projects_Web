@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 
-const API_BASE_URL = 'http://localhost:3030/api/homepage';
+const API_BASE_URL = 'http://localhost:3030/api/homepage'; 
 
 
 const DUMMY_BRANDS = ['Creed', 'Chanel', 'Dior', 'Gucci'];
