@@ -129,6 +129,7 @@ const Register_login = () => {
             <label className="input-label">Gender</label>
             <div className="input-group">
               <select name="gender"  onChange={handleChange} required>
+                <option value="-">null</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
                 <option value="Other">Other</option>
@@ -157,7 +158,7 @@ const Register_login = () => {
           {msg && <p>{msg}</p>}
         </div>
       </main>
-      <footer-login-component />
+      {/* <footer-login-component /> */}
     </div>
   );
 };
