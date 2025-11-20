@@ -1,0 +1,29 @@
+.site-footer {
+    position: fixed;
+    bottom: 0;
+    height: 120px;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.footer-links span {
+    display: flex;      /* เรียงลิงก์เป็นแนวนอน */
+    gap: 15px;          /* เว้นระยะห่างระหว่างลิงก์ */
+    list-style: none;   /* เอาจุด bullet ออก */
+    margin: 0;
+    padding: 0;
+}
+
+.follow-us span {
+    font-size: 0.85em;  /* ลดขนาดตัวหนังสือ */
+    text-decoration: none;
+    margin-left: 10px;
+    /* Placeholder for icons */
+}
