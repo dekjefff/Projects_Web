@@ -54,7 +54,7 @@ const TeamDev = () => {
               <p className="member-id">{member.studentId}</p>
               <p className="member-instagram">
                 <span className="instagram-icon">
-                  <img src="/assets/ig.png" alt="ig" />
+                  <img src="src\assets\ig.png" alt="ig" />
                 </span>
                 {member.instagram}
               </p>
