@@ -38,6 +38,8 @@ app.use(productRouter);
 const accountRouter = require('./Account/accountRouter');
 app.use(accountRouter);
 
+const customerRouter = require('./Customer/CustomerRouter');
+app.use(customerRouter);
 
 
 app.listen(process.env.port, () => {

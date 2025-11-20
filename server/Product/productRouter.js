@@ -55,5 +55,7 @@ router.get("/api/homepage/brand", productCURD.homepagebrand);
 
 router.get("/api/homepage/category", productCURD.homepagecategory);
 
+router.get("/api/get/detail", productCURD.homemostpopular);
+
 
 module.exports = router;
