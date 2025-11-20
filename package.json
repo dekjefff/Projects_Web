@@ -16,9 +16,10 @@
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "mongoose": "^8.19.4",
+    "navigate": "^0.3.6",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
-    "react-router-dom": "^7.9.5",
+    "react-router-dom": "^7.9.6",
     "react-toastify": "^11.0.5"
   },
   "devDependencies": {

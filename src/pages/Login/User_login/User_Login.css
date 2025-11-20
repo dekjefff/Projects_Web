@@ -61,12 +61,12 @@
 
 /* --- Logo Section (โลโก้และชื่อแบรนด์) --- */
 .logo-section {
-    margin-bottom: 25px;
+    margin: 20px 25px;
+    
 }
 .logo-section img {
-    /* สมมติว่าไฟล์โลโก้มีขนาดใหญ่เกินไป */
-    width: 250px; 
-    height: 250px;
+    width: 100px; 
+    height: 40px;
     
     
 }

@@ -158,7 +158,7 @@ const Register_login = () => {
           {msg && <p>{msg}</p>}
         </div>
       </main>
-      {/* <footer-login-component /> */}
+     <footer-login-component />
     </div>
   );
 };
