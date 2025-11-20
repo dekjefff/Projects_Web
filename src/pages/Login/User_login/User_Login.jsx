@@ -90,7 +90,7 @@ const User_Login = () => {
           </div>
         </div>
       </main>
-      <footer-login-component />
+      {/* <footer-login-component /> */}
     </div>
   );
 };
