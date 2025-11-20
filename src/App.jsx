@@ -16,6 +16,9 @@ import UserManagement from './pages_admin/UserManagement.jsx';
 import UserAccounteditForm from './pages_admin/UserAccounteditForm.jsx';
 import ProductList from './pages_admin/ProductList.jsx';
 import AddProduct from './pages_admin/AddProduct.jsx';
+import AddUser from './pages_admin/UserAccountaddForm.jsx';
+
+
 function App() {
   return (
     // ต้องห่อหุ้มด้วย <BrowserRouter>
@@ -36,8 +39,11 @@ function App() {
         <Route path="/edit-user" element={<UserAccounteditForm />} />
         <Route path="/ProductList" element={<ProductList />} />
         <Route path="/AddProduct" element={<AddProduct />} />
+        <Route path="/adduser" element={<AddUser/>}/>
       </Routes>
     </BrowserRouter>
   );
 }
+
+
 export default App;
