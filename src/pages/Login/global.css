@@ -1,0 +1,283 @@
+/* global.css (แก้ไขปัญหาการแสดงผลไม่เต็มจออย่างสมบูรณ์) */
+/* --- 5. Logo Section (ปรับปรุงให้รองรับเฉพาะ <img />) --- */
+.logo-section {
+    /* จัดกึ่งกลางโลโก้ */
+    text-align: center;
+    /* เว้นระยะห่างด้านล่างเพื่อแยกออกจากช่องกรอก Username */
+    margin-bottom: 25px; 
+}
+
+.logo-section img {
+    /* กำหนดขนาดที่แน่นอนสำหรับภาพโลโก้ */
+    width: 150px; 
+    height: auto; /* รักษาอัตราส่วนของภาพ */
+    display: block;
+    /* จัดกึ่งกลางภาพ (เมื่อ width < 100%) */
+    margin: 0 auto; 
+}
+
+.logo-section .logo-text-sub {
+    font-size: 0.85em; 
+    font-style: italic;
+    opacity: 0.8; 
+    /* ดึงขึ้นไปใกล้ข้อความหลัก */
+    margin-top: -5px; 
+}
+/* --- 1. Global Reset & Base Styles --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    /* เพิ่ม font-family ที่ดูเป็นทางการและอ่านง่าย */
+    font-family: Arial, sans-serif; 
+}
+/* **แก้ไขหลัก:** ป้องกัน Scrollbar แนวนอน และกำหนดความกว้างเต็มจอ */
+body {
+    overflow-x: hidden; 
+}
+.login-page {
+    background-color: #f7f3ed; 
+    color: #333333;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 100vw; 
+}
+
+/* --- 2. Header (Mobile Default) --- */
+.header {
+    width: 100%;
+    /* ปรับ padding ให้สอดคล้องกับภาพ */
+    padding: 10px 20px; 
+    text-align: right;
+    font-weight: bold;
+    /* ปรับขนาดตัวอักษรสำหรับ "User" บนมือถือ */
+    font-size: 1.1em; 
+}
+
+/* --- 3. Main Content & Centering (คงเดิม) --- */
+.main-content {
+    flex-grow: 1; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 15px;
+}
+
+/* --- 4. Login Container & Elements (ปรับตามภาพ) --- */
+.login-container {
+    background-color: #383633;
+    color: #f5f0e3;
+    padding: 30px 40px;
+    border-radius: 12px;
+    width: 100%;
+    /* ปรับ max-width ให้แคบลงเล็กน้อยเพื่อความสมมาตร */
+    max-width: 360px; 
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+    text-align: center;
+}
+
+.input-group-custom {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 12px 15px; /* เพิ่ม padding แนวตั้งเล็กน้อย */
+    position: relative;
+    margin-bottom: 30px; /* เพิ่มระยะห่างระหว่าง Input */
+}
+
+/* สไตล์สำหรับ input field จริง */
+.input-group-custom input {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    background: transparent;
+    color: #333;
+    font-size: 1em; /* ขนาดตัวอักษร Input */
+    
+}
+
+/* ปรับสี Placeholder Text ให้อ่อนลงเล็กน้อย */
+.input-group-custom input::placeholder {
+    color: #a8a8a8;
+}
+
+/* สไตล์สำหรับ text "Don't have an account?" และ "Forgot Password?" */
+.login-links {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    font-size: 0.85em; /* ทำให้ตัวอักษรเล็กลงตามภาพ */
+}
+
+.login-links a {
+    color: #f5f0e3;
+    text-decoration: none;
+}
+
+/* สไตล์สำหรับปุ่ม Login */
+.login-button {
+    background-color: #7d7d7d; /* สีเทาเข้มสำหรับปุ่ม */
+    color: #f5f0e3;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 0;
+    width: 100%;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background-color 0.2s;
+}
+
+.login-button:hover {
+    background-color: #929292;
+}
+.input-group-custom {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    border-radius: 8px;
+    /* ปรับ padding แนวตั้งให้น้อยลงเล็กน้อยเพื่อความกระทัดรัด */
+    padding: 8px 15px; 
+    position: relative;
+    /* เพิ่มระยะห่างด้านล่าง */
+    margin-bottom: 20px; 
+}
+
+/* *** การแก้ไขหลักสำหรับ Icon *** */
+.input-icon-img {
+    /* ปรับความกว้างของ Icon ให้เล็กลงเล็กน้อย เพื่อให้พอดีกับช่อง */
+    width: 18px; 
+    /* กำหนดความสูงให้เท่ากับความกว้าง */
+    height: 18px; 
+    /* กำหนดระยะห่างระหว่าง Icon กับ Text Input */
+    margin-right: 10px; 
+    object-fit: contain; 
+}
+
+/* เพิ่มการปรับขนาดตัวอักษรใน Input Field เพื่อให้พอดี */
+.input-group-custom input {
+    border: none;
+    outline: none;
+    flex-grow: 1;
+    background: transparent;
+    color: #333;
+    /* ปรับขนาดตัวอักษรให้ดูพอดี ไม่เล็กหรือใหญ่เกินไป */
+    font-size: 1.0em; 
+    /* หากมีปัญหา Icon และ Text ไม่ตรงกันตรงกลาง ให้ลองเพิ่ม line-height */
+    /* line-height: 1.5; */ 
+}
+/* --- 8. Footer (Mobile Default) --- */
+/* ใช้ class 'footer-login-component' แทนชื่อแท็ก */
+.footer-login-component {
+    display: block;
+    background-color: #383633;
+    width: 100%;
+    padding: 20px 20px; 
+    color: #f5f0e3;
+    font-size: 0.8em; /* ปรับขนาดตัวอักษรให้เล็กลง */
+    text-align: center;
+}
+
+/* ส่วนของ Menu (Services, Policy, Order, Eros, Admin) และ Social Media */
+.footer-content {
+    /* บน Mobile จัดให้อยู่ตรงกลางและเรียงเป็น Column หรือใช้ text-align: center */
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* ระยะห่างระหว่างหัวข้อ */
+    align-items: center;
+}
+
+.footer-menu {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.footer-copyright {
+    margin-top: 5px;
+    font-size: 0.9em;
+    opacity: 0.8;
+}
+
+.social-media {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+    font-size: 1.5em; /* ขนาด Icon Social */
+}
+
+/* ---------------------------------------------------------------------- */
+/* --- 9. Media Query สำหรับ PC/Desktop (min-width: 768px) --- */
+/* ---------------------------------------------------------------------- */
+@media (min-width: 768px) {
+    
+    /* --- A. Layout หลัก --- */
+    .header {
+        padding: 15px 50px; 
+        font-size: 1.2em; /* ขนาดตัวอักษร Header บน PC */
+    }
+
+    .main-content {
+        padding: 50px; 
+    }
+    
+    /* --- B. Footer PC Layout: ใช้ Flexbox เพื่อจัดเรียงองค์ประกอบทั้งหมดในแถวเดียว --- */
+    .footer-login-component {
+        padding: 20px 50px; 
+        font-size: 0.9em;
+    }
+
+    .footer-content {
+        /* ปรับให้เป็นแนวนอนและกระจายพื้นที่ */
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px; /* กำหนดความกว้างสูงสุดของเนื้อหา Footer */
+        margin: 0 auto;
+        padding-bottom: 5px; /* เว้นระยะจาก Copyright */
+    }
+    
+    /* จัดกลุ่มเมนู (Services - Admin) */
+    .footer-menu {
+        order: 1; /* ลำดับการแสดงผล */
+        gap: 30px; /* เพิ่มระยะห่างบน PC */
+        margin: 0;
+        justify-content: flex-start;
+        flex-grow: 1; /* ให้ยืดพื้นที่ */
+    }
+
+    /* จัดกลุ่ม Social Media */
+    .social-media-container {
+        order: 2; /* ลำดับการแสดงผล */
+        /* แก้ไขเพื่อให้ "Admin" และ "Follow Us" อยู่คนละบรรทัด */
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end; /* ชิดขวา */
+        gap: 5px;
+    }
+    
+    .social-media {
+        margin: 0;
+    }
+    
+    /* จัด Copyright ให้อยู่ด้านล่างสุดและตรงกลาง */
+    .footer-copyright-row {
+        text-align: center;
+        width: 100%;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .footer-copyright {
+        margin-top: 0;
+    }
+
+}
