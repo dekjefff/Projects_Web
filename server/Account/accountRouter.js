@@ -13,7 +13,7 @@ router.use(express.urlencoded({extended: true}));
 //   "user_name": "dekJeff",
 //   "passwd": "123456"
 // }
-router.post("/signin", accountController.signIn);
+router.post("/signin", accountController.register);
 router.post("/login", accountController.logIn);
 
 router.get("/profile", accountController.verifyToken, (req,res) => {

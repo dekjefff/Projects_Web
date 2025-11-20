@@ -1,0 +1,47 @@
+/* สำหรับรูปภาพ Thumbnail และ Main Image */
+.thumbnail-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.main-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    background-color: #0d1217; 
+}
+
+/* สำหรับ Action Icons */
+.action-icons {
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+}
+
+.icon-wrapper {
+    cursor: pointer;
+}
+
+.icon-wrapper img {
+    width: 24px; 
+    height: 24px;
+}
+
+/* สไตล์สำหรับไอคอนหัวใจที่ถูกกดแล้ว */
+.like-icon.liked {
+    font-size: 24px; 
+}
+/* เพิ่มสไตล์สำหรับข้อความแจ้งเตือนการคัดลอก */
+.copy-message {
+    color: green; 
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+/* ตรวจสอบให้แน่ใจว่าไอคอนใน action-icons มีขนาดคงที่ */
+.icon-wrapper img {
+    width: 24px; 
+    height: 24px;
+}

@@ -26,8 +26,13 @@ class footerMain extends HTMLElement {
 
                     <div class="footer-social">
                         <p class="social-title">FOLLOW US</p>
-                        <div class="social-icons">
-                            <a href="#" class="social-icon">📷</a> <a href="#" class="social-icon">𝐟</a> <a href="#" class="social-icon">╳</a> <a href="#" class="social-icon">🎶</a> </div>
+                        <div class="footer-social">
+                        <p class="social-title">FOLLOW US</p>
+                        <div class="IGG-icon"><img src="src/assets/Instragram-logo.png" alt="IG" /></div>
+                        <div class="FB-icon"><img src="src/assets/FB.png" alt="FB" /></div>
+                        <div class="X-icon"><img src="src/assets/X.png" alt="X" /></div>
+                        <div class="TT-icon"><img src="src/assets/TT.png" alt="TT" /></div>
+                    </div>
                     </div>
                 </div>
 
