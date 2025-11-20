@@ -4,8 +4,8 @@ const productCURD = require('./productController');
 
 
 //Admin Management
-// URL for get http://localhost:3030/api/SearchProduct
-router.get("/api/SearchProduct", productCURD.SearchProduct);
+// URL for get http://localhost:3030/api/ShowProduct
+router.get("/api/ShowProduct", productCURD.GetProduct);
 
 
 // URL:  http://localhost:3030/api/AddProduct
@@ -52,10 +52,8 @@ router.delete("/api/DeleteProduct", productCURD.DeleteProduct);
 //URL for test: http://localhost:3030/api/homepage/brand?frombrand=Creed
 router.get("/api/homepage/brand", productCURD.homepagebrand);
 
-
 router.get("/api/homepage/category", productCURD.homepagecategory);
 
-router.get("/api/get/detail", productCURD.homemostpopular);
 
 
 module.exports = router;
