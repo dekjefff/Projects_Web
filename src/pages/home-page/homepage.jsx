@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import "./homepage.css";
+import { useNavigate } from "react-router-dom";
 
 const FALLBACK_IMAGE = "/src/assets/fallback.png";
 const Img_url = [
@@ -146,9 +147,7 @@ const ProductSection = ({ title, products, itemsPerPage = 3 }) => {
       </div>
       <div className="products-footer">
         <div className="status">{products.length} items</div>
-        <div className="pager">{Array.from({ length: totalPages }).map((_, i) => (
-          <button key={i} className={`dot ${i === page ? "active" : ""}`} onClick={() => setPage(i)} />
-        ))}</div>
+        
       </div>
     </div>
   );
@@ -195,6 +194,7 @@ export default function Homepage({ itemsPerPage = 3, headerAutoPlayMs = 3000 }) 
     load();
     return () => (mounted = false);
   }, [season, sex]);
+  
 
   return (
     <div className="page-root">
@@ -221,27 +221,13 @@ export default function Homepage({ itemsPerPage = 3, headerAutoPlayMs = 3000 }) 
 
         <CategoryFilter season={season} setSeason={setSeason} sex={sex} setSex={setSex} />
 
-        <div className="category-session-root">
-          <div className="category-session-list">
-            {categoryProducts.length === 0 ?
-              <p style={{ textAlign: "center" }}>No category products found.</p> :
-              categoryProducts.map(product => (
-                <div className="category-session-card" key={product.product_ID}>
-                  <Link to={`/detail?product_id=${product.product_ID}`} aria-label={`View details for ${product.product_name}`}>
-                    <img src={product.image_url || FALLBACK_IMAGE} alt={product.product_name} className="category-session-img" />
-                  </Link>
-                  <div className="category-session-info">
-                    <div className="category-session-brand">{product.brand_name || product.brand_ID || "Unknown Brand"}</div>
-                    <div className="category-session-name">{product.product_name}</div>
-                    <div className="category-session-price">{Number(product.price).toLocaleString("th-TH")} THB</div>
-                  </div>
-                </div>
-              ))
-            }
-          </div>
-        </div>
-
+        <ProductSection
+          title={`Best ${season} For ${sex}`}
+          products={categoryProducts}
+          itemsPerPage={3}
+        />        
       </div>
+      <footer-main-component />
     </div>
   );
 }

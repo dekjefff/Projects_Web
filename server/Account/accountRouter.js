@@ -1,49 +1,65 @@
 const express = require('express');
 const router = express.Router();
 const accountController = require('./accountController');
-const { put } = require('../Customer/CustomerRouter');
 
 
 
-// URL for register:  http://localhost:3030/signin
+// method: post
+// http://localhost:3030/signin
 // Body
 // {
-//   "user_ID": "0006787095",
-//   "user_name": "dekJeff",
-//   "passwd": "123456"
+//   "firstName": "First",
+//   "lastName": "Last",
+//   "email": "user@example.com",
+//   "user_name": "username123",
+//   "passwd": "secret123"
 // }
-
+//
+// {
+//  "firstName":"name2",
+//  "lastName":"lastname2",
+//  "email":"user2@example.com",
+//  "user_name":"username123",
+//  "passwd":"secret123"
+//}
 
 router.post("/signin", accountController.register);
+
+
+// method: post
+// - URL: http://localhost:3030/login
+// Body
+// {
+//   "user_name": "admin1",
+//   "passwd": "1234"
+// } ต้องloginในwebsite
+
 router.post("/login", accountController.logIn);
 
-router.get("/profile", accountController.verifyToken, (req,res) => {
-
-    // verifyToken middleware sets `req.user_name` (decoded from token)
-    res.send({ message: "Protected route", user_name: req.user_name });
-
-});
-
-// Route to retrieve customer_ID by user_ID or user_name (query param)
-// Example: GET /customerID?user_name=dekJeff  OR  /customerID?user_ID=000123
-// router.get("/customerID", accountController.getCustomerID);
 
 
-// Users list (paginated). Protected — requires valid token.
+
+
+//method: get
+// URL: http://localhost:3030/users
 router.get("/users", accountController.getUsers);
 
 
 // Return account info for the authenticated user
-router.get("/accountInfo", accountController.verifyToken, accountController.getUserProfile);
+// URL: http://localhost:3030/accountInfo
+// router.get("/accountInfo", accountController.verifyToken, accountController.getUserProfile);
 
-router.put("/updateProfile", accountController.verifyToken, accountController.updateUserProfile);
+// router.put("/updateProfile", accountController.verifyToken, accountController.updateUserProfile);
 
+
+//method: get
+// http://localhost:3030/users/1
 router.get("/users/:customerId", accountController.getUserByCustomerId);
 
 
 
 
-// - URL: http://localhost:3030/users/
+// - URL: http://localhost:3030/users/1
 // {
 //   "firstName": "Jaffrey",
 //   "lastName": "Smith",
@@ -52,15 +68,6 @@ router.get("/users/:customerId", accountController.getUserByCustomerId);
 //   "phone": "0812345678",
 //   "membership_status": "VIP"
 // }
-// {
-//   "firstName": "Jaffrey",
-//   "lastName": "Smith",
-//   "gender": "M",
-//   "email": "jaffrey@example.com",
-//   "phone": "0812345678",
-//   "membership_status": "VIP"
-// }
-
 
 router.put("/users/:customerId", accountController.updateUserByCustomerId);
 

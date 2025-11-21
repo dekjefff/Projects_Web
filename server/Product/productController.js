@@ -46,13 +46,14 @@ exports.AddProduct = (req,res) => {
 exports.UpdateProduct = (req,res) => {
 
     let update = req.body.product;
-    let product_ID = req.body.product.product_ID;
+    let product_name = req.body.product.product_name;
+
     
-    if(!update || !product_ID){
+    if(!update || !product_name){
         return res.status(404).send({error:true});
     };
 
-    DBcon.query("UPDATE product SET ?  WHERE product_ID = ?", [update,product_ID] , function (error, results){
+    DBcon.query("UPDATE product SET ?  WHERE product_name = ?", [update, product_name] , function (error, results){
         if(error) throw error;
         return res.send({
             error: false,
@@ -65,21 +66,24 @@ exports.UpdateProduct = (req,res) => {
 
 exports.DeleteProduct =  (req,res) => {
 
-    let product_ID = req.params.id;
-    
-    if(!product_ID){
-        return res.status(404).send({error:true});
-    };
+    const productId = req.params.id;
 
-    DBcon.query("DELETE FROM product WHERE product_ID = ?", product_ID , function (error, results){
-        if(error) throw error;
-        return res.send({
-            error: false,
-            data: results.affectedRows,
-            message: "porduct has been deleted successfully"
+    const sqlDeleteChild = "DELETE FROM product_category WHERE product_ID = ?";
+    DBcon.query(sqlDeleteChild, [productId], function(error) {
+        if (error) throw error;
+
+        const sqlDeleteProduct = "DELETE FROM product WHERE product_ID = ?";
+        DBcon.query(sqlDeleteProduct, [productId], function(error, results) {
+            if (error) throw error;
+            return res.send({
+                error: false,
+                data: results,
+                message: "Product deleted successfully"
+            });
         });
     });
 };
+
 
 
 

@@ -208,8 +208,7 @@ const ProductDetail = ({ productId }) => {
                     </div>
                 </div>
             </main>
-            
-            {/*<footer-main-component />*/}
+            <footer-main-component />
         </div>
     );
 };
