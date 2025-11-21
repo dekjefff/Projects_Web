@@ -48,7 +48,7 @@ export default function AddProduct() {
             supplier_ID: null
         };
 
-        await fetch(`${BASE_URL}/admin/AddProduct`, {
+        await fetch(`${BASE_URL}/api/SearchProduct`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ product: productPayload })

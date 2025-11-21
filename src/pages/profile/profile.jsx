@@ -1,5 +1,5 @@
 import React from 'react';
-import './ProfileCard.css'; // นำเข้าไฟล์ CSS
+import './profile.css'; // นำเข้าไฟล์ CSS
 
 const ProfileCard = ({ user }) => {
   // สร้างข้อมูลจำลอง (mock data) ถ้า user prop ไม่ได้ถูกส่งมา
@@ -17,7 +17,7 @@ const ProfileCard = ({ user }) => {
   return (
     <div className="profile-container">
         <navlogo-component />
-
+        <div class="line"></div>
       <div className="profile-content">
         {/* ส่วน My profile */}
         <h2 className="profile-title">My profile</h2>

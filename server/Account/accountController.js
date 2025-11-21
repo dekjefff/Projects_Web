@@ -6,36 +6,67 @@ const bcrypt = require('bcryptjs');
 
 dotenv.config();
 
-exports.signIn = (req,res) => {
+// exports.signIn = (req,res) => {
 
-    const {user_name, passwd} = req.body;
-    const user_ID = Date.now().toString();  
-    const hashPassword = bcrypt.hashSync(passwd, 8);
+//     const {user_name, passwd} = req.body;
+//     const user_ID = Date.now().toString();  
+//     const hashPassword = bcrypt.hashSync(passwd, 8);
 
-    if(!user_name|| !passwd){
-        return res.status(400).send({error: true, message: error.message});
-    };
+//     if(!user_name|| !passwd){
+//         return res.status(400).send({error: true, message: error.message});
+//     };
 
-    const sqlCheck = "SELECT * FROM UserAccount WHERE user_name = ?";
-    DBcon.query(sqlCheck, [user_name], (error, results) => {
+//     const sqlCheck = "SELECT * FROM UserAccount WHERE user_name = ?";
+//     DBcon.query(sqlCheck, [user_name], (error, results) => {
+//     if (error) return res.status(500).send({ error: true, message: error.message });
+
+//     if (results.length > 0) {
+//       return res.status(400).send({message: "user name is exists" });
+//     }
+
+//     DBcon.query("INSERT INTO UserAccount set ?", {user_ID, user_name, passwd: hashPassword} , function(error,results){
+//     if (error) return res.status(500).send({ error: true, message: error.message });
+//     return res.send({
+//         error: false,
+//         data: results,
+//         user_ID,
+//         message: "New account has been created succesfully"
+//         });
+
+//     });
+// });
+// }
+
+exports.register = (req, res) => {
+  const {firstName,lastName,email,user_name, passwd } = req.body;
+  const user_ID = Date.now().toString();
+  const hashPassword = bcrypt.hashSync(passwd, 8);
+
+  if (!firstName || !lastName || !email || !user_name || !passwd) {
+    return res.status(400).send({ error: true, message: "Missing fields" });
+  }
+
+  // 1. Insert Customer ก่อน
+  const sqlCustomer = "INSERT INTO customer SET ?";
+  DBcon.query(sqlCustomer, { firstName, lastName, email }, (error, customerResult) => {
     if (error) return res.status(500).send({ error: true, message: error.message });
 
-    if (results.length > 0) {
-      return res.status(400).send({message: "user name is exists" });
-    }
+    const customer_ID = customerResult.insertId;
 
-    DBcon.query("INSERT INTO UserAccount set ?", {user_ID, user_name, passwd: hashPassword} , function(error,results){
-    if (error) return res.status(500).send({ error: true, message: error.message });
-    return res.send({
+    // 2. Insert UserAccount โดยผูกกับ customer_ID
+    const sqlAccount = "INSERT INTO UserAccount SET ?";
+    DBcon.query(sqlAccount, { user_ID, user_name, passwd: hashPassword, customer_ID }, (error, accountResult) => {
+      if (error) return res.status(500).send({ error: true, message: error.message });
+
+      return res.send({
         error: false,
-        data: results,
         user_ID,
-        message: "New account has been created succesfully"
-        });
-
+        customer_ID,
+        message: "Customer and Account created successfully"
+      });
     });
-});
-}
+  });
+};
 
 exports.logIn = (req,res) => {
 
@@ -74,3 +105,5 @@ exports.verifyToken = (req,res,next) => {
     });
 
 };
+
+
