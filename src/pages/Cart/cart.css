@@ -1,0 +1,487 @@
+/* cart.css - จัดรูปแบบให้เหมือน UI ที่แนบมาและสมดุลกับหน้าจอ */
+
+/* ************************************************* */
+/* 🎨 ธีมสี (อ้างอิงจากรูป Selection colors) */
+/* สีหลัก: #000000 (ดำ), #333333 (ดำเข้ม/ฟอนต์รอง), #FFFFFF (ขาว)
+    สีเน้น: #E0C58F (สีทอง/เบจ), #F5F0E9 (สีครีมอ่อนสำหรับพื้นหลัง Modal)
+    สีพื้นหลัง: #F7F7F7 (อ่อนมาก)
+*/
+/* ************************************************* */
+
+.cart-page-container {
+    padding: 0; 
+    background-color: #f7f7f7;
+    min-height: 100vh;
+    color: #000000; 
+    font-family: Arial, sans-serif; 
+}
+
+/* ------------------------------------------- */
+/* ส่วนหัวและ Layout (คงเดิม) */
+/* ------------------------------------------- */
+
+.shopping-bag-title {
+    font-size: 2em;
+    font-weight: 400; 
+    margin-bottom: 20px;
+    padding-top: 20px;
+    color: #333333; 
+}
+
+.cart-content-wrapper {
+    padding: 0 40px 80px; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.cart-layout {
+    display: flex;
+    gap: 0; 
+}
+
+.cart-items-list {
+    flex: 2; 
+    padding-right: 40px; 
+    border-right: 1px solid #e0e0e0; 
+}
+.cart-items-list h3 {
+    color: #000000;
+}
+
+/* ------------------------------------------- */
+/* รายการสินค้าแต่ละชิ้น (คงเดิม) */
+/* ------------------------------------------- */
+
+.cart-item {
+    display: flex;
+    padding: 25px 0;
+    border-bottom: 1px solid #e0e0e0; 
+    color: #333333;
+}
+.cart-item:last-child {
+    border-bottom: 1px solid #e0e0e0; 
+}
+
+.cart-item-image {
+    width: 80px;
+    height: 120px;
+    object-fit: contain;
+    margin-right: 25px;
+}
+
+.cart-item-details {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
+}
+
+.cart-item-name {
+    font-weight: 600; 
+    font-size: 1.1em;
+    margin: 0;
+    color: #000000;
+}
+
+.cart-item-size {
+    font-size: 0.9em;
+    color: #333333; 
+    margin: 2px 0;
+}
+
+.cart-item-price-total {
+    font-weight: normal;
+    font-size: 1.1em;
+    color: #000000;
+    padding-left: 20px; 
+}
+
+/* Quantity Control */
+.quantity-control {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    border: 1px solid #e0e0e0; 
+    width: fit-content;
+}
+
+.quantity-control button {
+    background: none;
+    border: none;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 1em;
+    color: #000000;
+}
+
+.quantity-control input {
+    width: 30px;
+    height: 100%;
+    text-align: center;
+    border: none;
+    border-left: 1px solid #e0e0e0;
+    border-right: 1px solid #e0e0e0;
+    padding: 5px 0;
+    outline: none;
+    background-color: #ffffff;
+    color: #000000;
+}
+
+/* ------------------------------------------- */
+/* Order Summary Card (คงเดิม) */
+/* ------------------------------------------- */
+
+.order-summary-card {
+    flex: 1; 
+    padding: 0 0 0 40px; 
+    background-color: transparent; 
+    border-left: none; 
+    color: #000000;
+}
+
+.order-summary-card h2 {
+    font-size: 1.2em;
+    font-weight: 600;
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #000000; 
+    margin-bottom: 20px;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+.estimated-total {
+    font-weight: bold;
+    color: #000000; 
+}
+.estimated-total span:first-child {
+    font-weight: 400; 
+}
+.shipping-na {
+    color: #333333;
+}
+
+.promotion-input {
+    display: flex;
+    border: 1px solid #000000; 
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.promotion-input input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+    background-color: #ffffff; 
+    color: #000000;
+    font-size: 0.9em;
+}
+
+.promo-apply-btn {
+    background: none;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-left: 1px solid #000000; 
+    color: #000000;
+}
+
+/* ที่อยู่จัดส่งที่ถูกเลือก */
+.selected-address-display {
+    padding: 10px 0;
+    line-height: 1.4;
+}
+
+/* ปุ่ม Add/Change Address */
+.add-address-btn {
+    width: 100%;
+    padding: 10px 15px;
+    background-color: #ffffff; 
+    border: 1px solid #000000; 
+    color: #000000;
+    cursor: pointer;
+    margin-bottom: 15px;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1em;
+    position: relative;
+    content: none;
+}
+.add-address-btn::after {
+    content: ''; 
+}
+.add-address-btn {
+    position: relative;
+}
+.add-address-btn:focus {
+    outline: none;
+}
+.add-address-btn::before {
+    content: '▾';
+    font-size: 1.2em;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+
+.summary-divider {
+    border-top: 1px solid #e0e0e0;
+    margin: 20px 0;
+}
+
+/* Payment Icons */
+.payment-method-section {
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+}
+
+.payment-label {
+    margin-right: 0; 
+    font-size: 1em;
+    color: #000000; 
+}
+
+.payment-icons {
+    display: flex;
+    gap: 5px; 
+}
+
+.payment-icon-wrapper {
+    width: auto; 
+    height: 30px;
+    padding: 0;
+    border: none; 
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3em;
+}
+
+.payment-icon-wrapper.active {
+    opacity: 0.8;
+}
+
+/* Checkout Button */
+.checkout-btn {
+    width: 100%;
+    padding: 15px;
+    background-color: #000000;
+    color: #ffffff;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-top: 10px;
+}
+
+.checkout-btn:disabled {
+    background-color: #333333; 
+    color: #ffffff;
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+
+/* ------------------------------------------- */
+/* ✅ Modal Styles (แก้ไขสีพื้นหลัง/ปุ่มให้ตรงภาพ) */
+/* ------------------------------------------- */
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* พื้นหลัง Modal (Backdrop) เป็นสีเทาเข้ม (Mock: #333333 50% หรือ #000000 50%) */
+    background-color: rgba(0, 0, 0, 0.6); /* ใช้ 60% เพื่อให้เข้มขึ้นเล็กน้อยตามภาพ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    /* พื้นหลัง Modal ใช้สีครีมอ่อน #F5F0E9 ตาม Selection Colors */
+    background: #F5F0E9; 
+    padding: 40px;
+    border-radius: 0; 
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: left; 
+    color: #000000;
+    position: relative;
+}
+
+.modal-content h2 {
+    font-size: 2em;
+    font-weight: 400;
+    margin: 0 0 30px 0;
+    padding: 0;
+    color: #333333;
+}
+.modal-content h3 {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin: 0 0 20px 0;
+    color: #000000;
+}
+
+/* Address List Item (ใน ShippingAddressSelector) */
+.address-item {
+    padding: 15px 0;
+    /* ✅ ใช้สีเทาอ่อน #B9B9B9 50% สำหรับเส้นแบ่ง */
+    border-bottom: 1px solid rgba(185, 185, 185, 0.5); 
+    cursor: pointer;
+    line-height: 1.5;
+}
+.address-item:hover {
+    /* พื้นหลังเมื่อ Hover (จำลองสีโปร่งแสงอ่อนๆ) */
+    background-color: rgba(224, 197, 143, 0.2); /* E0C58F 20% */
+}
+
+.address-item strong {
+    font-weight: 600;
+    color: #000000;
+}
+
+/* ✅ ปุ่ม 'Add new address' */
+.address-add-btn {
+    padding: 10px 15px;
+    /* พื้นหลังสีทอง/เบจ #E0C58F */
+    background-color: #E0C58F;
+    color: #000000;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    margin-bottom: 30px;
+    /* ✅ ปรับขอบมนเล็กน้อยตามรูป */
+    border-radius: 3px; 
+}
+
+/* ✅ ปุ่ม Close ใน Shipping Address Selector */
+.modal-close-btn {
+    padding: 10px 20px;
+    /* พื้นหลังสีเทาเข้ม (Mock: #333333) */
+    background-color: #333333; 
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 1em;
+    /* ✅ ปรับขอบมนเล็กน้อยตามรูป */
+    border-radius: 3px; 
+}
+
+/* ------------------------------------------- */
+/* Add New Address Form (ภายใน Modal Content) */
+/* ------------------------------------------- */
+
+.address-form input,
+.address-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    /* ✅ ใช้สีเทาอ่อน #B9B9B9 50% สำหรับกรอบ */
+    border: 1px solid rgba(185, 185, 185, 0.5); 
+    background-color: #ffffff; 
+    color: #000000;
+    box-sizing: border-box;
+    font-size: 1em;
+}
+
+.address-form-row {
+    display: flex;
+    gap: 15px;
+}
+.address-form-row > * {
+    flex: 1;
+}
+
+/* ปุ่ม Form Actions (Cancel/Save) */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 30px;
+    gap: 15px;
+}
+
+.form-actions button {
+    padding: 12px 25px;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    border-radius: 3px;
+}
+
+.form-actions .cancel-btn {
+    background-color: #ffffff;
+    color: #000000;
+    /* ✅ กรอบสีดำ #000000 */
+    border: 1px solid #000000; 
+}
+
+.form-actions .save-btn {
+    /* พื้นหลังสีทอง/เบจ #E0C58F */
+    background-color: #E0C58F; 
+    color: #000000;
+}
+
+
+/* Responsive Design (คงเดิม) */
+@media (max-width: 768px) {
+    .cart-content-wrapper {
+        padding: 0 20px 40px;
+    }
+    .cart-layout {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .cart-items-list {
+        padding-right: 0;
+        border-right: none;
+    }
+    .cart-item {
+        flex-wrap: wrap;
+    }
+    .cart-item-details {
+        min-width: 150px;
+    }
+    .cart-item-price-total {
+        width: 100%;
+        text-align: right;
+        padding-left: 0;
+        margin-top: 10px;
+    }
+    .order-summary-card {
+        padding: 20px 0;
+    }
+    
+    /* Responsive for Address Form */
+    .address-form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+}
+.shipping-container-content{
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 5px;
+}
+.add-address-button-wrapper{
+    padding: 10px;
+}
