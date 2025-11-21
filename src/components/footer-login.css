@@ -1,0 +1,83 @@
+.site-login-footer {
+    background-color: #333;
+    color:  #E0C58F;
+    padding: 30px 50px;         /*เว้นขอบบนล่าง 30 ซ้ายขวา50*/
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    font-weight: bold;
+}
+
+.footer-content{
+    display: flex;
+    justify-content: space-between; /*ดันเมนูให้กระจายชิดซ้าย-ขวาและตรงกลางเท่ากัน */
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.1em;
+    margin-bottom: 50px; /* เว้นระยะห่างจากโซนด้านล่าง */
+}
+
+.footer-content a{
+    color:#E0C58F;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+.site-login-footer a:hover{
+    color:aliceblue
+}
+
+.Social-login-footer{
+    display: flex;
+    gap: 5px;
+}
+
+.footer-bottom{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.copyright{
+    font-size: 0.85em;
+    opacity: 0.7;
+    margin-bottom: 0px;
+}
+
+.Social-login-footer{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 5px;
+}
+
+.Social-title {
+    display: block;
+    font-size: 0.75em;  /* ลดขนาดตัวหนังสือ */
+    font-weight:lighter;
+    margin-bottom: 1px;
+    letter-spacing: 1px;
+    color : #E0C58F;
+    text-transform: uppercase;
+}
+
+.Social-icon {
+    display: flex;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.Social-icon img{
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    transition: transform 0.3s, opacity 0.3s;
+}
+.social-icon:hover {
+    opacity: 1;
+    transform: scale(1.2);
+}
