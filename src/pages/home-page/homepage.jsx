@@ -143,7 +143,6 @@ const HomePage = () => {
       </section>
       {/* 4. Recommend by Gender  */}
       <section className="product-section gender-section">
-        <h2>🚻 สินค้าสำหรับ สุภาพบุรุษ/สุภาพสตรี</h2>
         <p className="note">ส่วนนี้จะแสดงผลสินค้าเพศ Men โดยตั้งค่าฤดูเป็น Summer </p>
         <div className="product-list">
           {/* ดึงสินค้า for Men/Women โดยตรง  */}
