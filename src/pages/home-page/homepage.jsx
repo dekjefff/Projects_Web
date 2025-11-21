@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from 'react-router-dom';
 import "./homepage.css";
+import { useNavigate } from "react-router-dom";
 
 const FALLBACK_IMAGE = "/src/assets/fallback.png";
 const Img_url = [
@@ -146,9 +147,7 @@ const ProductSection = ({ title, products, itemsPerPage = 3 }) => {
       </div>
       <div className="products-footer">
         <div className="status">{products.length} items</div>
-        <div className="pager">{Array.from({ length: totalPages }).map((_, i) => (
-          <button key={i} className={`dot ${i === page ? "active" : ""}`} onClick={() => setPage(i)} />
-        ))}</div>
+        
       </div>
     </div>
   );
@@ -195,6 +194,7 @@ export default function Homepage({ itemsPerPage = 3, headerAutoPlayMs = 3000 }) 
     load();
     return () => (mounted = false);
   }, [season, sex]);
+  
 
   return (
     <div className="page-root">
@@ -208,43 +208,26 @@ export default function Homepage({ itemsPerPage = 3, headerAutoPlayMs = 3000 }) 
             <p className="header-desc">SHOP NOW</p>
           </div>
         </div>
-        <div className="product-list">
-          {brandProducts.map(p => <ProductCard key={p.product_ID} product={p} />)}
-        </div>
-      </section>
+      </header>
 
-      <hr />
+      <div className="products-category-wrapper">
+        <BrandSelector selectedBrand={selectedBrand} setSelectedBrand={setSelectedBrand} />
 
-      {/* 3. Recommend by Category  */}
-      <section className="product-section category-section">
-        <h2> หมวดหมู่แนะนำ: {selectedCategory}</h2>
-        <div className="category-dropdown">
-          <select 
-            value={selectedCategory} 
-            onChange={(e) => setSelectedCategory(e.target.value)}
-          >
-            {['Best Summer Men', 'Best Summer Women', 'Best Winter Men', 'Best Winter Women'].map(category => (
-              <option key={category} value={category}>{category}</option>
-            ))}
-          </select>
-        </div>
-        <div className="product-list">
-          {categoryProducts.map(p => <ProductCard key={p.product_ID} product={p} />)}
-        </div>
-      </section>
-      {/* 4. Recommend by Gender  */}
-      <section className="product-section gender-section">
-        <h2>🚻 สินค้าสำหรับ สุภาพบุรุษ/สุภาพสตรี</h2>
-        <p className="note">ส่วนนี้จะแสดงผลสินค้าเพศ Men โดยตั้งค่าฤดูเป็น Summer </p>
-        <div className="product-list">
-          {/* ดึงสินค้า for Men/Women โดยตรง  */}
-          {DUMMY_PRODUCTS.slice(1,4).map(p => <ProductCard key={p.product_ID} product={p} />)}
-        </div>
-        </div>
+        {loading ? <p style={{ textAlign: "center", padding: "40px" }}>Loading...</p> :
+          <ProductSection title={selectedBrand || "All Brands"} products={products} itemsPerPage={itemsPerPage} />
+        }
 
+        <CategorySection />
+
+        <CategoryFilter season={season} setSeason={setSeason} sex={sex} setSex={setSex} />
+
+        <ProductSection
+          title={`Best ${season} For ${sex}`}
+          products={categoryProducts}
+          itemsPerPage={3}
+        />        
       </div>
+      <footer-main-component />
     </div>
-
-  
   );
 }
