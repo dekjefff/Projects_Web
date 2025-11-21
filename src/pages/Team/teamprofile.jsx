@@ -13,7 +13,7 @@ const TeamDev = () => {
     },
     {
       id: 2,
-      name: 'สุขกฤษฎิ์ ชัยวาลย์',
+      name: 'สุกฤษฎิ์ ชัยวาลย์',
       studentId: '6787083',
       instagram: 'firsst_ss',
       image: '/src/assets/First.jpg',
@@ -54,7 +54,7 @@ const TeamDev = () => {
               <p className="member-id">{member.studentId}</p>
               <p className="member-instagram">
                 <span className="instagram-icon">
-                  <img src="src\assets\ig.png" alt="ig" />
+                  <img src="src\assets\image.png" width='20px' height='20px' alt="ig" />
                 </span>
                 {member.instagram}
               </p>
