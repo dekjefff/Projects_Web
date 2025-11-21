@@ -10,16 +10,41 @@ router.get("/api/ShowProduct", productCURD.GetProduct);
 
 // URL:  http://localhost:3030/api/AddProduct
 // Add Product test (post)
+//{"product": {
+//             "product_name": "Absolute Aventus",
+//             "_description": "smell good",
+//             "price": "10000",
+//             "image_url": "/src/assets/CreedAb.png",
+//             "stock_quantity": 100,
+//             "size": "100ml",
+//             "scent_description": "Muscaline and powerful",
+//             "brand_ID": 1,
+//             "supplier_ID": null
+//         }
+// }
+// 
 // {"product": {
-//             "product_ID": 1000000002,
 //             "product_name": "Aventus For Her",
 //             "_description": "smell good",
 //             "price": "10000",
-//             "image_url": "C:WebApp_ProjectProjects_Webserverphotocreed2.jpg",
+//             "image_url": "/src/assets/CreedForHer.png",
 //             "stock_quantity": 100,
 //             "size": "100ml",
 //             "scent_description": "sexy",
-//             "brand_ID": null,
+//             "brand_ID": 1,
+//             "supplier_ID": null
+//         }
+// }
+//
+// {"product": {
+//             "product_name": "Millesime Imperial",
+//             "_description": "smell good",
+//             "price": "10000",
+//             "image_url": "/src/assets/creedMill.png",
+//             "stock_quantity": 100,
+//             "size": "100ml",
+//             "scent_description": "fresh and strong",
+//             "brand_ID": 1,
 //             "supplier_ID": null
 //         }
 // }
@@ -44,7 +69,7 @@ router.post("/api/AddProduct", productCURD.AddProduct);
 router.put("/api/UpdateProduct", productCURD.UpdateProduct);
 
 // Delete Product test (delete)
-// http://localhost:3030/admin/DeleteProduct/1000000002
+// http://localhost:3030/admin/DeleteProduct/1
 router.delete("/api/DeleteProduct", productCURD.DeleteProduct);
 
 

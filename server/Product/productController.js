@@ -25,6 +25,13 @@ exports.AddProduct = (req,res) => {
         return res.status(404).send({error:true});
     };
 
+    DBcon.query("SELECT * FROM product WHERE product_name = ?", add.product_name , function (error, results){
+        if(error) throw error;
+        if(results.length > 0){
+            return res.status(409).send({error:true, message: "Product already exists"});
+        }   
+    });
+
     DBcon.query("INSERT INTO product SET ?", add, function (error, results){
         if(error) throw error;
         return res.send({
