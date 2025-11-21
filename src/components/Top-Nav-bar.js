@@ -1,22 +1,22 @@
 import './Top-nav-bar.css'; // *** ต้องอยู่บนสุดเท่านั้น ***
 
 class NavbarTop extends HTMLElement {
-    constructor() {
-        super();
-        this.isOpen = false;
-        this.searchDropdown = null;
-        this.searchIcon = null;
-        this.searchInput = null;
+    constructor() {
+        super();
+        this.isOpen = false;
+        this.searchDropdown = null;
+        this.searchIcon = null;
+        this.searchInput = null;
 
-        // ผูกฟังก์ชันเข้ากับ instance ตั้งแต่แรกเพื่อป้องกันปัญหา 'this'
-        this.handleToggleSearch = this.handleToggleSearch.bind(this);
-        this.closeSearch = this.closeSearch.bind(this);
-        this.handleClickOutside = this.handleClickOutside.bind(this);
-        this.handleKeyboardShortcut = this.handleKeyboardShortcut.bind(this);
-        this.handleSearch = this.handleSearch.bind(this);
-        // เพิ่มการผูกฟังก์ชันใหม่
-        this.getLoginState = this.getLoginState.bind(this);
-    }
+        // ผูกฟังก์ชันเข้ากับ instance ตั้งแต่แรกเพื่อป้องกันปัญหา 'this'
+        this.handleToggleSearch = this.handleToggleSearch.bind(this);
+        this.closeSearch = this.closeSearch.bind(this);
+        this.handleClickOutside = this.handleClickOutside.bind(this);
+        this.handleKeyboardShortcut = this.handleKeyboardShortcut.bind(this);
+        this.handleSearch = this.handleSearch.bind(this);
+        // เพิ่มการผูกฟังก์ชันใหม่
+        this.getLoginState = this.getLoginState.bind(this);
+    }
 
     // **********************************
     // ******* ฟังก์ชันตรวจสอบสถานะ Login *******
@@ -35,17 +35,17 @@ class NavbarTop extends HTMLElement {
     }
 
 
-    connectedCallback() {
+    connectedCallback() {
         // ตรวจสอบสถานะการล็อกอิน
         const isUserLoggedIn = this.getLoginState();
-        
+
         // กำหนด URL และข้อความแสดงผลตามสถานะ
         const loginHref = isUserLoggedIn ? "/profile" : "/login";
         // หากต้องการเปลี่ยนข้อความจาก 'Login' เป็น 'Profile' เมื่อล็อกอินแล้ว:
         // const loginText = isUserLoggedIn ? "Profile" : "Login"; 
-        
+
         // **ส่วนที่แก้ไข: อัปเดต HTML Template**
-        this.innerHTML = `
+        this.innerHTML = `
             <div class="navbar-content">
                 <div class="navbar-left">
                     <a href="/" class="nav-item home-button">HOME</a>
@@ -87,127 +87,127 @@ class NavbarTop extends HTMLElement {
                 </div>
             </div>
         `;
-        
-        // 1. หา Element ที่เกี่ยวข้อง (ส่วนนี้คงเดิม)
-        this.searchDropdown = this.querySelector('.search-dropdown-overlay');
-        this.searchIcon = this.querySelector('.search-icon-trigger');
-        const closeBtn = this.querySelector('.close-btn');
-        this.searchInput = this.querySelector('.search-input');
-        const searchButton = this.querySelector('.search-button');
 
-        // หา Select filters โดยใช้ ID ใหม่ (แนะนำ) หรือ nth-of-type
-        const sexFilter = this.querySelector('#filter-sex');
-        const sizeFilter = this.querySelector('#filter-size');
-        const seasonFilter = this.querySelector('#filter-season');
+        // 1. หา Element ที่เกี่ยวข้อง (ส่วนนี้คงเดิม)
+        this.searchDropdown = this.querySelector('.search-dropdown-overlay');
+        this.searchIcon = this.querySelector('.search-icon-trigger');
+        const closeBtn = this.querySelector('.close-btn');
+        this.searchInput = this.querySelector('.search-input');
+        const searchButton = this.querySelector('.search-button');
 
-        // 2. ผูก Event Listener (ส่วนนี้คงเดิม)
-        this.searchIcon.addEventListener('click', this.handleToggleSearch);
-        closeBtn.addEventListener('click', this.closeSearch);
-        document.addEventListener('mousedown', this.handleClickOutside);
-        document.addEventListener('keydown', this.handleKeyboardShortcut);
+        // หา Select filters โดยใช้ ID ใหม่ (แนะนำ) หรือ nth-of-type
+        const sexFilter = this.querySelector('#filter-sex');
+        const sizeFilter = this.querySelector('#filter-size');
+        const seasonFilter = this.querySelector('#filter-season');
 
-        // ผูกปุ่มค้นหาเข้ากับฟังก์ชัน handleSearch
-        searchButton.addEventListener('click', () => {
-            this.handleSearch(
-                sexFilter.value,
-                sizeFilter.value,
-                seasonFilter.value
-            );
-        });
-    }
-    
+        // 2. ผูก Event Listener (ส่วนนี้คงเดิม)
+        this.searchIcon.addEventListener('click', this.handleToggleSearch);
+        closeBtn.addEventListener('click', this.closeSearch);
+        document.addEventListener('mousedown', this.handleClickOutside);
+        document.addEventListener('keydown', this.handleKeyboardShortcut);
+
+        // ผูกปุ่มค้นหาเข้ากับฟังก์ชัน handleSearch
+        searchButton.addEventListener('click', () => {
+            this.handleSearch(
+                sexFilter.value,
+                sizeFilter.value,
+                seasonFilter.value
+            );
+        });
+    }
+
     // ส่วนที่เหลือของ Class (disconnectedCallback, handleKeyboardShortcut, handleToggleSearch, closeSearch, handleClickOutside, handleSearch) **คงเดิม**
 
-    /**
-     * ทำความสะอาด Event Listener เมื่อ Component ถูกถอดออก (ป้องกัน Memory Leak)
-     */
-    disconnectedCallback() {
-        if (this.searchIcon) {
-            this.searchIcon.removeEventListener('click', this.handleToggleSearch);
-        }
-        document.removeEventListener('mousedown', this.handleClickOutside);
-        document.removeEventListener('keydown', this.handleKeyboardShortcut);
-    }
+    /**
+     * ทำความสะอาด Event Listener เมื่อ Component ถูกถอดออก (ป้องกัน Memory Leak)
+     */
+    disconnectedCallback() {
+        if (this.searchIcon) {
+            this.searchIcon.removeEventListener('click', this.handleToggleSearch);
+        }
+        document.removeEventListener('mousedown', this.handleClickOutside);
+        document.removeEventListener('keydown', this.handleKeyboardShortcut);
+    }
 
-    // **********************************
-    // ******* ฟังก์ชันจัดการคีย์บอร์ด *******
-    // **********************************
-    handleKeyboardShortcut(event) {
-        // คีย์ลัด: Alt + S
-        if (event.altKey && (event.key === 's' || event.key === 'S')) {
-            event.preventDefault();
-            this.handleToggleSearch();
-            return;
-        }
+    // **********************************
+    // ******* ฟังก์ชันจัดการคีย์บอร์ด *******
+    // **********************************
+    handleKeyboardShortcut(event) {
+        // คีย์ลัด: Alt + S
+        if (event.altKey && (event.key === 's' || event.key === 'S')) {
+            event.preventDefault();
+            this.handleToggleSearch();
+            return;
+        }
 
-        // คีย์ลัด: ESCAPE สำหรับปิด
-        if (this.isOpen && event.key === 'Escape') {
-            this.closeSearch();
-            return;
-        }
-    }
+        // คีย์ลัด: ESCAPE สำหรับปิด
+        if (this.isOpen && event.key === 'Escape') {
+            this.closeSearch();
+            return;
+        }
+    }
 
-    handleToggleSearch() {
-        this.isOpen = !this.isOpen;
-        this.searchDropdown.classList.toggle('active', this.isOpen);
+    handleToggleSearch() {
+        this.isOpen = !this.isOpen;
+        this.searchDropdown.classList.toggle('active', this.isOpen);
 
-        if (this.isOpen) {
-            this.searchInput.focus();
-        } else {
-            this.searchInput.blur();
-        }
-    }
+        if (this.isOpen) {
+            this.searchInput.focus();
+        } else {
+            this.searchInput.blur();
+        }
+    }
 
-    closeSearch() {
-        this.isOpen = false;
-        this.searchDropdown.classList.remove('active');
-        this.searchInput.blur();
-    }
+    closeSearch() {
+        this.isOpen = false;
+        this.searchDropdown.classList.remove('active');
+        this.searchInput.blur();
+    }
 
-    handleClickOutside(event) {
-        if (this.isOpen &&
-            !this.searchDropdown.contains(event.target) &&
-            !this.searchIcon.contains(event.target)) {
+    handleClickOutside(event) {
+        if (this.isOpen &&
+            !this.searchDropdown.contains(event.target) &&
+            !this.searchIcon.contains(event.target)) {
 
-            this.closeSearch();
-        }
-    }
+            this.closeSearch();
+        }
+    }
 
-    /**
-     * ฟังก์ชันจัดการการค้นหา: สร้าง URL และนำทางไปยังหน้า Result
-     */
-    handleSearch(sex, size, season) {
-        const query = this.searchInput.value.trim();
-        const params = new URLSearchParams();
+    /**
+     * ฟังก์ชันจัดการการค้นหา: สร้าง URL และนำทางไปยังหน้า Result
+     */
+    handleSearch(sex, size, season) {
+        const query = this.searchInput.value.trim();
+        const params = new URLSearchParams();
 
-        if (query) {
-            params.append('q', query);
-        }
-        if (sex && sex !== 'ALL') {
-            params.append('sex', sex);
-        }
-        if (size && size !== 'ALL') {
-            params.append('size', size);
-        }
-        if (season && season !== 'ALL') {
-            params.append('season', season);
-        }
+        if (query) {
+            params.append('q', query);
+        }
+        if (sex && sex !== 'ALL') {
+            params.append('sex', sex);
+        }
+        if (size && size !== 'ALL') {
+            params.append('size', size);
+        }
+        if (season && season !== 'ALL') {
+            params.append('season', season);
+        }
 
-        // *** สร้างเส้นทางปลายทางที่ต้องการ ***
-        const path = `/resultDetailsearch?${params.toString()}`;
+        // *** สร้างเส้นทางปลายทางที่ต้องการ ***
+        const path = `/resultDetailsearch?${params.toString()}`;
 
-        // 🚨 การแก้ไข: สร้าง Custom Event แทน window.location.href
-        const navigateEvent = new CustomEvent('customNavigate', {
-            bubbles: true,
-            composed: true,
-            detail: { path: path }
-        });
+        // 🚨 การแก้ไข: สร้าง Custom Event แทน window.location.href
+        const navigateEvent = new CustomEvent('customNavigate', {
+            bubbles: true,
+            composed: true,
+            detail: { path: path }
+        });
 
-        // สั่งให้ Custom Element กระจาย Event นี้ออกไป
-        this.dispatchEvent(navigateEvent);
+        // สั่งให้ Custom Element กระจาย Event นี้ออกไป
+        this.dispatchEvent(navigateEvent);
 
-        this.closeSearch();
-    }
+        this.closeSearch();
+    }
 }
 
 customElements.define('navbar-component', NavbarTop);
