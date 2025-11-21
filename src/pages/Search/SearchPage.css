@@ -1,0 +1,220 @@
+/* --- Global Page Style --- */
+.search-page-container {
+    background-color: #F5F0E9; /* The beige background from screenshots */
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+    color: #333;
+}
+
+/* --- Search Bar Section (Top) --- */
+.search-bar-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 5%;
+    gap: 40px;
+    flex-wrap: wrap;
+    border-bottom: 1px solid #e0dacd;
+}
+
+.search-input-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 300px;
+}
+
+.search-icon-large {
+    font-size: 48px;
+    color: #d4af37; /* Gold color */
+}
+
+.main-search-input {
+    width: 100%;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    color: #d4af37; /* Gold text */
+    font-family: 'serif'; /* To match "I'm Looking For..." style */
+    outline: none;
+}
+
+.main-search-input::placeholder {
+    color: #d4af37;
+    opacity: 0.7;
+}
+
+.filters-group {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.filter-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-item label {
+    font-size: 12px;
+    color: #7AA2E3; /* Light blue from screenshot labels */
+    margin-bottom: 4px;
+    margin-left: 4px;
+}
+
+.filter-item select {
+    padding: 8px 16px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+    background-color: transparent;
+    min-width: 100px;
+    cursor: pointer;
+    outline: none;
+    color: #555;
+}
+
+.search-action-btn {
+    background-color: #1a2340; /* Dark Navy Blue */
+    color: white;
+    padding: 10px 24px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    margin-top: 18px; /* Align with inputs */
+    font-weight: 500;
+}
+
+.search-action-btn:hover {
+    background-color: #2a3350;
+}
+
+/* --- Hero Result (Big Image) --- */
+.hero-result {
+    width: 100%;
+    height: 500px; /* Large banner height */
+    overflow: hidden;
+    position: relative;
+    background-color: #000;
+}
+
+.hero-image-box {
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.hero-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Covers the banner area */
+    opacity: 0.9;
+    transition: transform 0.5s ease;
+}
+
+.hero-image-box:hover img {
+    transform: scale(1.02);
+}
+
+.hero-text-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #333; /* Or white depending on image */
+    /* Assuming the image has text in it like the LV screenshot, 
+       but we add this just in case */
+    pointer-events: none;
+}
+
+/* --- Grid Results --- */
+.results-container {
+    padding-bottom: 60px;
+}
+
+.results-header {
+    padding: 20px 5%;
+    font-size: 18px;
+    color: #d4af37;
+    font-weight: bold;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 Columns like screenshot */
+    gap: 20px;
+    padding: 0 5%;
+}
+
+.grid-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: #fff; /* White card background ? or transparent */
+    background: transparent; 
+}
+
+.grid-image-wrapper {
+    width: 100%;
+    aspect-ratio: 1 / 1.2; /* Taller rectangle */
+    background: #fff; /* White background behind bottle */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    cursor: pointer;
+    /* Optional shadow for the bottle look */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05); 
+}
+
+.grid-image-wrapper img {
+    max-width: 80%;
+    max-height: 90%;
+    object-fit: contain;
+    transition: transform 0.3s;
+}
+
+.grid-image-wrapper:hover img {
+    transform: scale(1.05);
+}
+
+.grid-info p {
+    margin: 4px 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.grid-brand {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: bold;
+    color: #333;
+}
+
+.grid-name {
+    font-size: 14px;
+    color: #555;
+}
+
+.grid-price {
+    font-size: 13px;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+@media (max-width: 768px) {
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .search-bar-wrapper {
+        flex-direction: column;
+        gap: 20px;
+    }
+}

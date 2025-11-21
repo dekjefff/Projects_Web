@@ -1,59 +1,24 @@
+//
 const express = require('express');
 const router = express.Router();
 const productCURD = require('./productController');
 
-
-//Admin Management
-// URL for get http://localhost:3030/api/SearchProduct
+// Admin Management
 router.get("/api/SearchProduct", productCURD.SearchProduct);
-
-
-// URL:  http://localhost:3030/api/AddProduct
-// Add Product test (post)
-// {"product": {
-//             "product_ID": 1000000002,
-//             "product_name": "Aventus For Her",
-//             "_description": "smell good",
-//             "price": "10000",
-//             "image_url": "C:WebApp_ProjectProjects_Webserverphotocreed2.jpg",
-//             "stock_quantity": 100,
-//             "size": "100ml",
-//             "scent_description": "sexy",
-//             "brand_ID": null,
-//             "supplier_ID": null
-//         }
-// }
 router.post("/api/AddProduct", productCURD.AddProduct);
-
-
-// URL:  http://localhost:3030/api/UpdateProduct
-// Update product test (put)
-// {"product": {
-//             "product_ID": 1000000002,
-//             "product_name": "Aventus For Her",
-//             "_description": "smell good",
-//             "price": "10000",
-//             "image_url": "C:WebApp_ProjectProjects_Webserverphotocreed2.jpg",
-//             "stock_quantity": 100,
-//             "size": "100ml",
-//             "scent_description": "sexy and so sweet",
-//             "brand_ID": null,
-//             "supplier_ID": null
-//         }
-// }
 router.put("/api/UpdateProduct", productCURD.UpdateProduct);
+router.delete("/api/DeleteProduct/:id", productCURD.DeleteProduct); // Fixed param :id
 
-// Delete Product test (delete)
-// http://localhost:3030/admin/DeleteProduct/1000000002
-router.delete("/api/DeleteProduct", productCURD.DeleteProduct);
-
-
-//Home Page
-//URL for test: http://localhost:3030/api/homepage/brand?frombrand=Creed
+// Home Page
 router.get("/api/homepage/brand", productCURD.homepagebrand);
-
-
 router.get("/api/homepage/category", productCURD.homepagecategory);
 
+// Search Page (Advanced Filter)
+router.get("/api/products/search", productCURD.searchAndFilter);
+
+// Dropdown Options
+router.get("/api/options/sex", productCURD.getOptionSex);
+router.get("/api/options/size", productCURD.getOptionSize);
+router.get("/api/options/season", productCURD.getOptionSeason);
 
 module.exports = router;

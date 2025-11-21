@@ -16,7 +16,7 @@ import ProductList from './pages_admin/ProductList.jsx';
 import AddProduct from './pages_admin/AddProduct.jsx';
 import AddUser from './pages_admin/UserAccountaddForm.jsx';
 import Result from './pages/Search/Result.jsx';
-
+import SearchPage from './pages/Search/SearchPage.jsx';
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
       <Routes>
         {/* เปลี่ยนpath login เป็น user */}
         <Route path="/login" element={<User_Login />} /> 
-        <Route path="/signin" element={<Register_login />} />
+        <Route path="/Register_login" element={<Register_login />} />
         <Route path="/ShippingAddress" element={<ShippingAddress/>}/>
         <Route path="/TeamDev" element={<TeamDev/>}/>
         <Route path="/" element={<ErosHomePage/>}/>
@@ -38,6 +38,8 @@ function App() {
         <Route path="/AddProduct" element={<AddProduct />} />
         <Route path="/adduser" element={<AddUser/>}/>
         <Route path="/Result" element={<Result/>}/>
+        <Route path="/search" element={<SearchPage />} />
+        <Route path="/cartpage" element={<div>This is Cart Page</div>} />
       </Routes>
     </BrowserRouter>
   );
