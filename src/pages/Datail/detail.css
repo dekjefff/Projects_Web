@@ -76,10 +76,7 @@ a {
 
 /* คอนเทนเนอร์หลักของหน้า */
 .product-detail-container {
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+    background-color: var(--secondary-color);
     /* การจัดองค์ประกอบโดยรวมจะอยู่ใน main */
 }
 
@@ -87,7 +84,7 @@ a {
 .product-content {
     display: flex;
     gap: 80px; /* ระยะห่างระหว่างรูปภาพและข้อมูล */
-    padding: 50px 0;
+    padding: 50px 20px 40px 40px;
 }
 
 /* =================================================== */
