@@ -1,18 +1,180 @@
-navbar-component {
-    display: block;      /* ให้เป็น Block level element */
-    position: relative;  /* <--- บรรทัดนี้สำคัญที่สุดในการแก้ปัญหา */
+/* Navbar.css */
+
+/* ******************************************************* */
+/* 1. Navbar Container และการจัดวาง Dropdown */
+/* ******************************************************* */
+.navbar-component {
+    /* ⚠️ สำคัญมาก: ต้องมี position: relative เพื่อให้ Dropdown อ้างอิงได้ */
+    position: relative; 
     width: 100%;
-    /* ... สไตล์อื่นๆ ของ Navbar container ... */
+    /* อาจต้องมี display: flex หรือ block ตาม Component หลัก */
+    display: block; 
 }
+
+.navbar-content {
+    /* ใช้สีม่วงเข้มสำหรับขอบบน/ล่าง (ตามภาพ) */
+    border-top: 10px solid #3c2a4f; 
+    border-bottom: 1px solid #3c2a4f;
+    
+    /* สีพื้นหลังของแถบ Navbar (สีเบจ/ครีมอ่อน) */
+    background-color: #f5f0e9; 
+    
+    padding: 10px 0;
+    width: 100%;
+    display: flex;
+    justify-content: center; /* จัดให้อยู่ตรงกลางแนวนอน */
+    align-items: center;
+    height: 60px;
+}
+
+/* ---------------------------------- */
+/* 2. จัดวางองค์ประกอบด้านซ้าย/ขวา (แกนหลัก) */
+/* ---------------------------------- */
+.navbar-left {
+    display: flex;
+    align-items: center;
+    /* ใช้ justify-content: flex-start ร่วมกับ margin: auto และ order */
+    justify-content: flex-start; 
+    width: 90%; 
+    max-width: 1200px; 
+    height: 100%;
+}
+
+/* ---------------------------------- */
+/* 3. สไตล์สำหรับ Logo และการจัดเรียงตามรูปภาพ */
+/* ---------------------------------- */
+.navbar-content img[alt="Logo"] {
+    /* ⚠️ การจัดเรียงสำคัญ: ใช้ order และ margin เพื่อให้ Logo อยู่ตรงกลางระหว่างกลุ่มลิงก์ */
+    order: 3; /* จัดให้ Logo อยู่ตรงกลาง */
+    margin-right: auto; /* ดันกลุ่มลิงก์ซ้าย/ขวาออกไป */
+    margin-left: 20px; 
+    
+    width: 100px;
+    height: auto;
+}
+
+/* ---------------------------------- */
+/* 4. สไตล์สำหรับ Navigation Links และ Order */
+/* ---------------------------------- */
+.nav-item {
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: 500;
+    padding: 8px 15px;
+    margin: 0 5px;
+    transition: color 0.3s;
+    color: #697899; /* สีข้อความ (สีน้ำเงิน/ม่วงอ่อน) */
+    order: 2; /* ค่าเริ่มต้น */
+}
+
+.nav-item:hover {
+    color: #3c2a4f;
+}
+
+/* จัดเรียงลิงก์ตามลำดับ: HOME, COLLECTIONS, (Logo), Men, Women */
+.navbar-left > a:nth-of-type(1) { /* HOME */
+    order: 1; 
+}
+.navbar-left > a:nth-of-type(2) { /* COLLECTIONS */
+    order: 2;
+    margin-right: 50px; /* เพิ่มระยะห่างก่อนถึง Logo */
+}
+.navbar-left > a:nth-of-type(3) { /* Men */
+    /* ในโค้ด HTML ของคุณ Men คือ element ลำดับที่ 4 (หลังจาก img Logo) 
+       หากใช้โครงสร้าง HTML เดิม: <a href="#" class="nav-item">Men</a> */
+    order: 4;
+    margin-left: 50px; /* เพิ่มระยะห่างหลัง Logo */
+}
+.navbar-left > a:nth-of-type(4) { /* Women */
+    order: 5;
+}
+
+
+/* ---------------------------------- */
+/* 5. สไตล์พิเศษสำหรับปุ่ม HOME */
+/* ---------------------------------- */
+.home-button {
+    background-color: #ffffff; 
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    font-weight: 700;
+    padding: 8px 20px;
+    color: #3c2a4f;
+}
+
+/* ---------------------------------- */
+/* 6. สไตล์สำหรับ Icons (Search, Bag, Login) และ Order */
+/* ---------------------------------- */
+.navbar-content img[alt="search"] {
+    order: 6; /* Search Icon */
+    width: 25px;
+    height: 25px;
+    margin-left: 15px;
+    cursor: pointer;
+    /* จำลองสีทองอ่อน */
+    filter: invert(60%) sepia(30%) saturate(400%) hue-rotate(10deg) brightness(100%); 
+}
+
+.bag-icon, .login-icon {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+}
+
+/* Bag Icon */
+.bag-icon {
+    order: 7;
+    margin-left: 15px;
+    /* จัดวางไอคอนกระเป๋าและ Search ให้อยู่ในระนาบเดียวกัน */
+}
+.bag-icon img {
+    width: 30px;
+    height: 30px;
+    filter: invert(60%) sepia(30%) saturate(400%) hue-rotate(10deg) brightness(100%); 
+}
+
+/* Login/Profile Icon */
+.login-icon {
+    order: 8;
+    display: flex;
+    flex-direction: column; /* จัดให้อยู่ในแนวตั้ง */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 20px;
+    padding-bottom: 5px; 
+}
+
+.login-icon img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #3c2a4f; 
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.login-icon a {
+    /* ข้อความ Login ที่อยู่ใต้รูปโปรไฟล์ */
+    font-size: 0.8em;
+    color: #cc9900; /* สีทองอ่อนๆ ตามภาพ */
+    margin-top: 2px;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+
+/* ******************************************************* */
+/* 7. สไตล์สำหรับ Search Dropdown Overlay (จากโค้ดที่คุณส่งมา) */
+/* ******************************************************* */
 .search-dropdown-overlay {
     /* *** การควบคุมการแสดงผล (ซ่อนเริ่มต้น) *** */
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
     
-    /* ****************************************************** */
-    /* *** แก้ไข 1: เพิ่ม transform และขยาย transition *** */
-    /* ****************************************************** */
     /* ผลัก Dropdown ขึ้นไปด้านบนเล็กน้อย (ซ่อนอยู่) */
     transform: translateY(-20px); 
     
@@ -27,7 +189,7 @@ navbar-component {
     top: 100%; 
     left: 0;
     width: 100%; 
-    z-index: 100; 
+    z-index: 100; /* ให้ Dropdown อยู่ด้านบนของเนื้อหาอื่นๆ */
     
     /* *** รูปลักษณ์ (Styling) *** */
     background-color: #f5f0e9; 
@@ -41,13 +203,11 @@ navbar-component {
     visibility: visible;
     pointer-events: auto;
     
-    /* ****************************************************** */
-    /* *** แก้ไข 2: ดึง Dropdown กลับมาที่ตำแหน่งปกติ *** */
-    /* ****************************************************** */
-    transform: translateY(0); /* เลื่อนลงมาสู่ตำแหน่งเดิม */
+    /* ดึง Dropdown กลับมาที่ตำแหน่งปกติ */
+    transform: translateY(0); 
 }
 
-/* ปรับ Content ภายใน Dropdown ให้มีขนาดที่เหมาะสม (ไม่มีการเปลี่ยนแปลงสำหรับ Animation) */
+/* ปรับ Content ภายใน Dropdown */
 .search-content {
     max-width: 900px;
     margin: 0 auto; 
@@ -59,19 +219,16 @@ navbar-component {
     position: relative; 
 }
 
-/* สไตล์เฉพาะสำหรับปุ่มปิด (X) (ไม่มีการเปลี่ยนแปลง) */
 .close-btn {
     position: absolute;
     top: -5px;
     right: 0;
 }
 
-/* สไตล์ช่องค้นหาหลักให้กว้าง (ไม่มีการเปลี่ยนแปลง) */
 .search-input-group {
     flex-grow: 1; 
 }
 
-/* สไตล์ Filter Group ให้มีขนาดเล็กลง (ไม่มีการเปลี่ยนแปลง) */
 .filter-group {
     display: flex;
     gap: 10px;
