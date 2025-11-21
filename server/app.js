@@ -38,6 +38,9 @@ app.use(productRouter);
 const accountRouter = require('./Account/accountRouter');
 app.use(accountRouter);
 
+const CustomerRouter = require('./Product/productRouter');
+app.use(CustomerRouter);
+
 const customerRouter = require('./Customer/CustomerRouter');
 app.use(customerRouter);
 
