@@ -38,14 +38,12 @@ app.use(productRouter);
 const accountRouter = require('./Account/accountRouter');
 app.use(accountRouter);
 
-<<<<<<<<< Temporary merge branch 1
+
 const CustomerRouter = require('./Product/productRouter');
 app.use(CustomerRouter);
 
-=========
 const customerRouter = require('./Customer/CustomerRouter');
 app.use(customerRouter);
->>>>>>>>> Temporary merge branch 2
 
 
 app.listen(process.env.port, () => {
