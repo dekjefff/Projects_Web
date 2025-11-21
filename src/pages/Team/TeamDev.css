@@ -103,12 +103,6 @@
 .member-card:hover {
     transform: translateY(-5px);
 }
-
-.selected-member {
-    border: 3px solid #6c7dd2;
-    /* สีฟ้าสำหรับ Card ที่ถูกเลือก (เส้นขอบ) */
-}
-
 .member-image-wrapper {
     border-radius: 8px;
     /* มุมโค้งมนสำหรับกรอบรูป */
@@ -159,6 +153,7 @@
     
 }
 .instagram-icon {
+    
     font-size: 1em;
     color: #f7f3ed;
     /* สีไอคอน Instagram */
@@ -286,6 +281,7 @@
     margin: 6px 0 4px;
     font-size: 18px;
     font-weight: 600;
+    color: #bfa895;
 }
 
 .team-card p {
@@ -318,13 +314,14 @@
 }
 
 .team-card:nth-child(3) {
-    margin-top: 10px;
-    margin-bottom: 60px;
+    margin-top: 20px;
+    margin-bottom: 40px;
 }
 
 .team-card:nth-child(4) {
     margin-top: 60px;
     margin-bottom: 10px;
+
 }
 
 .line {
@@ -333,4 +330,12 @@
     background-color: #484848;
     opacity: 0.6;
     margin: 0 auto;
+}
+.team-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-12px) scale(1.03); /* เด้งขึ้น + ขยาย */
+  box-shadow: 0 12px 20px rgba(0,0,0,0.25); /* ใส่เงาเพิ่ม */
 }
