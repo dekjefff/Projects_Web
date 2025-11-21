@@ -38,6 +38,7 @@ function App() {
         <Route path="/" element={<ErosHomePage />} />
         <Route path="/SearchResults" element={<SearchResultsPage />} />
         <Route path="/Search" element={<SearchOverlay />} />
+        
         <Route path="/UserManagement" element={<UserManagement />} />
         <Route path="/edit-user" element={<UserAccounteditForm />} />
         <Route path="/ProductList" element={<ProductList />} />

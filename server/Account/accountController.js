@@ -106,4 +106,50 @@ exports.verifyToken = (req,res,next) => {
 
 };
 
+exports.getUserProfile = (req,res) => {
+
+    const user_name = req.user_name;
+    DBcon.query("SELECT ua.user_ID, ua.user_name, c.firstName, c.lastName, c.email FROM UserAccount ua JOIN customer c ON ua.customer_ID = c.customer_ID WHERE ua.user_name = ?", [user_name], (error,results) => {
+
+        if (error) return res.status(500).send({ error: true, message: error.message });
+        if(results.length === 0) return res.status(404).send({message: "User Acount Not Found"});
+        res.send({data: results[0]});
+
+    });
+
+};
+
+exports.updateUserProfile = (req,res) => {    
+    const user_name = req.user_name;
+    const {firstName, lastName, email} = req.body;
+    DBcon.query("UPDATE customer c JOIN UserAccount ua ON c.customer_ID = ua.customer_ID SET c.firstName = ?, c.lastName = ?, c.email = ? WHERE ua.user_name = ?", [firstName, lastName, email, user_name], (error,results) => {
+
+        if (error) return res.status(500).send({ error: true, message: error.message });  
+        return res.send({
+            error: false,
+            data: results,
+            message: "User profile has been updated successfully"
+        });
+    });
+};
+
+// // Get customer_ID by user_ID or user_name (query parameters)
+// exports.getCustomerID = (req, res) => {
+//   const { user_ID, user_name } = req.query;
+
+//   if (!user_ID && !user_name) {
+//     return res.status(400).send({ error: true, message: 'Provide user_ID or user_name as query parameter' });
+//   }
+
+//   const sql = `SELECT customer_ID FROM UserAccount WHERE ${user_ID ? 'user_ID = ?' : 'user_name = ?'} LIMIT 1`;
+//   const param = user_ID || user_name;
+
+//   DBcon.query(sql, [param], (error, results) => {
+//     if (error) return res.status(500).send({ error: true, message: error.message });
+//     if (!results || results.length === 0) return res.status(404).send({ error: true, message: 'Customer not found' });
+
+//     return res.send({ error: false, customer_ID: results[0].customer_ID });
+//   });
+// };
+
 
