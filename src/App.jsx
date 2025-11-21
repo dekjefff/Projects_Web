@@ -15,6 +15,7 @@ import UserAccounteditForm from './pages_admin/UserAccounteditForm.jsx';
 import ProductList from './pages_admin/ProductList.jsx';
 import AddProduct from './pages_admin/AddProduct.jsx';
 import AddUser from './pages_admin/UserAccountaddForm.jsx';
+import Result from './pages/Search/Result.jsx';
 
 
 function App() {
@@ -36,6 +37,7 @@ function App() {
         <Route path="/ProductList" element={<ProductList />} />
         <Route path="/AddProduct" element={<AddProduct />} />
         <Route path="/adduser" element={<AddUser/>}/>
+        <Route path="/Result" element={<Result/>}/>
       </Routes>
     </BrowserRouter>
   );

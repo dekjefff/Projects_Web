@@ -5,6 +5,7 @@
     margin: 0 auto;
     padding: 0;
     font-family: Arial, sans-serif;
+    background-color: #F5F0E9;
 }
 
 .result-hero-image {
@@ -44,8 +45,9 @@
 .divider-line {
     border: 0;
     height: 1px;
-    background-color: #eee;
+    background-color: #000000;
     margin: 10px 0 20px 0;
+    color: #000000;
 }
 
 /* --- Product Grid & Card Styles (4 Columns) --- */
@@ -111,4 +113,8 @@
     background-size: cover;
     background-position: center;
     margin: 40px 0;
+}
+
+.no-results{
+    color:black;
 }

@@ -181,37 +181,3 @@
 .save-button:hover {
     background-color: #cbb69e;
 }
-
-
-/* --- Footer Styles --- */
-.site-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: #333;
-    color: #fff;
-    padding: 20px 40px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    font-size: 14px;
-    box-sizing: border-box;
-}
-
-.footer-links span {
-    margin-right: 20px;
-    cursor: pointer;
-}
-
-.follow-us span {
-    margin-left: 10px;
-    /* Placeholder for icons */
-}
-.line {
-    width: 100%;
-    height: 1px;
-    background-color: #484848;   /* สีเทาเข้มแบบในภาพ */
-    opacity: 0.6;                /* ทำให้บางลง */
-    margin: 0 auto;
-}

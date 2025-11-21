@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import './detail.css'; // ตรวจสอบให้แน่ใจว่าชื่อไฟล์ CSS ถูกต้อง (detail.css)
+import './detail.css';
 
 // ข้อมูลจำลอง (ไม่เปลี่ยนแปลง)
 const dummyProduct = {
@@ -162,7 +162,7 @@ const ProductDetail = ({ productId }) => {
                 </div>
             </main>
             
-            {/*<footer-main-component />*/}
+            {<footer-main-component />}
         </div>
     );
 };
