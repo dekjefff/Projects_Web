@@ -1,140 +1,184 @@
-// SearchOverlay.jsx
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useNavigate, useSearchParams } from 'react-router-dom';
+import './SearchPage.css';
 
-// ******************************************************
-// สมมติว่ามี API Endpoints สำหรับดึงตัวเลือก:
-// คุณอาจจะต้องสร้าง Route และ Controller ใน Node.js เพิ่มเติม
-// ******************************************************
-const API_OPTIONS = {
-    SEX: 'http://localhost:3030/api/options/sex', 
-    SIZE: 'http://localhost:3030/api/options/size', 
-    SEASON: 'http://localhost:3030/api/options/season',
-};
+// Import เฉพาะไฟล์เพื่อให้ Custom Element ลงทะเบียนตัวเอง
+import '../../components/Nav-Logo.js'; 
+import '../../components/footer-Login.js';;
 
-const SearchOverlay = ({ isOpen, onClose }) => {
+const SearchPage = () => {
     const navigate = useNavigate();
-    // State สำหรับเก็บค่าที่ผู้ใช้เลือก
-    const [searchTerm, setSearchTerm] = useState('');
-    const [selectedSex, setSelectedSex] = useState('ALL');
-    const [selectedSize, setSelectedSize] = useState('ALL');
-    const [selectedSeason, setSelectedSeason] = useState('ALL');
+    const [searchParams] = useSearchParams();
+    
+    // State for Inputs
+    const [searchText, setSearchText] = useState(searchParams.get('q') || '');
+    const [sex, setSex] = useState(searchParams.get('sex') || 'ALL');
+    const [size, setSize] = useState(searchParams.get('size') || 'ALL');
+    const [season, setSeason] = useState(searchParams.get('season') || 'ALL');
 
-    // State สำหรับเก็บตัวเลือกที่ดึงมาจาก API
-    const [sexOptions, setSexOptions] = useState(['ALL']);
-    const [sizeOptions, setSizeOptions] = useState(['ALL']);
-    const [seasonOptions, setSeasonOptions] = useState(['ALL']);
-    const [isOptionsLoading, setIsOptionsLoading] = useState(true);
+    // State for Data
+    const [products, setProducts] = useState([]);
+    const [loading, setLoading] = useState(false);
 
-    // ******************************************************
-    // Hook สำหรับเรียก API เพื่อดึงตัวเลือก
-    // ******************************************************
+    // Fetch Data when URL parameters change
     useEffect(() => {
-        const fetchOptions = async (url, setStateCallback) => {
+        const fetchProducts = async () => {
+            setLoading(true);
             try {
-                const response = await axios.get(url);
-                // สมมติว่า response.data.data เป็น array ของ strings (เช่น ['Male', 'Female'])
-                // เราเพิ่ม 'ALL' เข้าไปในตัวเลือกเสมอ
-                setStateCallback(['ALL', ...response.data.data]);
-            } catch (error) {
-                console.error(`Error fetching options from ${url}:`, error);
-                // หากดึงไม่ได้ ให้ใช้ค่าเริ่มต้นคือ ['ALL']
-                setStateCallback(['ALL']); 
+                // Construct Query String
+                const query = new URLSearchParams({
+                    q: searchParams.get('q') || '',
+                    sex: searchParams.get('sex') || 'ALL',
+                    size: searchParams.get('size') || 'ALL',
+                    season: searchParams.get('season') || 'ALL'
+                }).toString();
+
+                const res = await fetch(`http://localhost:3030/api/products/search?${query}`);
+                const json = await res.json();
+                if (!json.error) {
+                    setProducts(json.data);
+                }
+            } catch (err) {
+                console.error("Error fetching search results:", err);
+            } finally {
+                setLoading(false);
             }
         };
 
-        const loadAllOptions = async () => {
-            setIsOptionsLoading(true);
-            await Promise.all([
-                fetchOptions(API_OPTIONS.SEX, setSexOptions),
-                fetchOptions(API_OPTIONS.SIZE, setSizeOptions),
-                fetchOptions(API_OPTIONS.SEASON, setSeasonOptions),
-            ]);
-            setIsOptionsLoading(false);
-        };
+        fetchProducts();
+    }, [searchParams]);
 
-        loadAllOptions();
-    }, []); // รันครั้งเดียวเมื่อคอมโพเนนต์โหลด
-
-    if (!isOpen) {
-        return null;
-    }
-
+    // Handle "Search" Button Click
     const handleSearch = () => {
-        const queryParams = new URLSearchParams();
-        if (searchTerm.trim()) {
-            queryParams.append('search', searchTerm.trim());
-        }
-        queryParams.append('sex', selectedSex);
-        queryParams.append('size', selectedSize);
-        queryParams.append('season', selectedSeason);
-
-        navigate(`/results?${queryParams.toString()}`);
-        onClose();
+        const params = new URLSearchParams();
+        if (searchText) params.set('q', searchText);
+        if (sex !== 'ALL') params.set('sex', sex);
+        if (size !== 'ALL') params.set('size', size);
+        if (season !== 'ALL') params.set('season', season);
+        
+        navigate(`/search?${params.toString()}`);
     };
 
-    const handleKeyPress = (event) => {
-        if (event.key === 'Enter') {
-            handleSearch();
-        }
-    };
-    
-    // หากกำลังโหลดข้อมูล ให้แสดงสถานะโหลด
-    if (isOptionsLoading) {
-        return (
-            <div className="search-overlay loading">
-                <div className="search-box-content">
-                    <div className="loading-message">กำลังโหลดตัวเลือกค้นหา...</div>
-                </div>
-            </div>
-        );
-    }
+    // Separate Hero Product (1st item) from Grid Products (Rest)
+    const heroProduct = products.length > 0 ? products[0] : null;
+    const gridProducts = products.length > 1 ? products.slice(1) : [];
 
     return (
-        <div className="search-overlay">
-            <div className="search-box-content">
-                <div className="search-form-row">
-                    {/* ช่อง Input หลัก: I'm Looking For... */}
-                    <div className="main-input-group">
-                        <span className="search-icon">
-                            <i className="fas fa-search"></i>
-                        </span>
-                        <input
-                            type="text"
-                            placeholder="I'm Looking For...Search by Brand, Name"
-                            value={searchTerm}
-                            onChange={(e) => setSearchTerm(e.target.value)}
-                            onKeyPress={handleKeyPress}
-                            className="search-input-main"
-                        />
-                    </div>
+        <div className="search-page-container">
+            {/* --- NavBar --- */}
+            <navlogo-component></navlogo-component> 
+            {/* Or utilize your specific Navbar component logic */}
 
-                    {/* Dropdown Filters */}
-                    <div className="filter-group">
+            {/* --- SEARCH BAR SECTION (Screenshot 1 Style) --- */}
+            <div className="search-bar-wrapper">
+                <div className="search-input-group">
+                    <span className="search-icon-large">🔍</span>
+                    <input 
+                        type="text" 
+                        className="main-search-input"
+                        placeholder="I'm Looking For... Search by Brand, Name"
+                        value={searchText}
+                        onChange={(e) => setSearchText(e.target.value)}
+                    />
+                </div>
+
+                <div className="filters-group">
+                    <div className="filter-item">
                         <label>Sex:</label>
-                        <select value={selectedSex} onChange={(e) => setSelectedSex(e.target.value)} className="search-select">
-                            {sexOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
+                        <select value={sex} onChange={(e) => setSex(e.target.value)}>
+                            <option value="ALL">ALL</option>
+                            <option value="Men">Men</option>
+                            <option value="Women">Women</option>
+                            <option value="Unisex">Unisex</option>
                         </select>
-
-                        <label>Size:</label>
-                        <select value={selectedSize} onChange={(e) => setSelectedSize(e.target.value)} className="search-select">
-                            {sizeOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-                        </select>
-
-                        <label>Season:</label>
-                        <select value={selectedSeason} onChange={(e) => setSelectedSeason(e.target.value)} className="search-select">
-                            {seasonOptions.map(opt => <option key={opt} value={opt}>{opt}</option>)}
-                        </select>
-
-                        <button onClick={handleSearch} className="search-button">
-                            Search
-                        </button>
                     </div>
+
+                    <div className="filter-item">
+                        <label>Size:</label>
+                        <select value={size} onChange={(e) => setSize(e.target.value)}>
+                            <option value="ALL">ALL</option>
+                            <option value="50">50ml</option>
+                            <option value="100">100ml</option>
+                        </select>
+                    </div>
+
+                    <div className="filter-item">
+                        <label>Season:</label>
+                        <select value={season} onChange={(e) => setSeason(e.target.value)}>
+                            <option value="ALL">ALL</option>
+                            <option value="Summer">Summer</option>
+                            <option value="Winter">Winter</option>
+                        </select>
+                    </div>
+
+                    <button className="search-action-btn" onClick={handleSearch}>
+                        Search
+                    </button>
                 </div>
             </div>
+
+            {/* --- RESULT SECTION (Screenshot 2 Style) --- */}
+            <div className="results-container">
+                {loading && <p className="loading-text">Searching...</p>}
+                
+                {!loading && products.length === 0 && (
+                    <div className="no-results">No perfumes found matching your criteria.</div>
+                )}
+
+                {!loading && heroProduct && (
+                    <>
+                        {/* HERO IMAGE (Large First Result) */}
+                        <div className="hero-result">
+                            <div 
+                                className="hero-image-box" 
+                                onClick={() => navigate(`/detail?product_id=${heroProduct.product_ID}`)}
+                            >
+                                {/* Use placeholder if image_url is missing */}
+                                <img 
+                                    src={heroProduct.image_url || '/src/assets/banner1.png'} 
+                                    alt={heroProduct.product_name} 
+                                />
+                                <div className="hero-text-overlay">
+                                    <h2>{heroProduct.product_name}</h2>
+                                    <h3>{heroProduct.brand_name}</h3>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* GRID IMAGES (The rest) */}
+                        <div className="results-header">
+                            <span>All Product: ⌄</span>
+                        </div>
+
+                        <div className="product-grid">
+                            {gridProducts.map((product) => (
+                                <div key={product.product_ID} className="grid-card">
+                                    <div 
+                                        className="grid-image-wrapper"
+                                        onClick={() => navigate(`/detail?product_id=${product.product_ID}`)}
+                                    >
+                                        <img 
+                                            src={product.image_url || '/src/server/photo/creed2.jpg'} 
+                                            alt={product.product_name} 
+                                        />
+                                    </div>
+                                    <div className="grid-info">
+                                        <p className="grid-brand">{product.brand_name || "Brand"}</p>
+                                        <p className="grid-name">{product.product_name}</p>
+                                        <p className="grid-price">
+                                            {Number(product.price).toLocaleString()} THB
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </>
+                )}
+            </div>
+
+            <footer-login-component></footer-login-component>
         </div>
     );
 };
 
-export default SearchOverlay;
+export default SearchPage;
