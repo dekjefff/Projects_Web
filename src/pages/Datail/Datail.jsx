@@ -209,7 +209,7 @@ const ProductDetail = ({ productId }) => {
                     </div>
                 </div>
             </main>
-            <footer-main-component />
+            <footer-login-component />
         </div>
     );
 };
