@@ -1,133 +1,138 @@
-// SearchResultsPage.jsx
-import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
-import axios from 'axios';
-import './result.css';
+// Result.jsx
+import React, { useState } from 'react';
+import './result.css'; 
+import { FaArrowLeft, FaHeart, FaShareAlt } from 'react-icons/fa'; // เพิ่ม FaHeart, FaShareAlt
+import { useLocation, useNavigate } from 'react-router-dom';
 
-// URL API ที่ดึงสินค้าทั้งหมด (ตาม productRouter.js)
-const API_URL = 'http://localhost:3030/api/SearchProduct'; 
+// --- ข้อมูลจำลองสำหรับตัวเลือกสินค้า (Mock Data Extension) ---
+// เราจะสมมติว่าข้อมูลสินค้าที่ถูกส่งมามี Array ของรูปภาพและขนาด
+const MOCK_PRODUCT_DATA = {
+    id: 101,
+    name: "BLEU DE CHANEL L'EXCLUSIF", // เปลี่ยนชื่อให้ตรงกับภาพ
+    brand: "CHANEL",
+    price: 7100, // ราคาเริ่มต้น
+    images: [ // รูปภาพย่อย
+        "src/assets/detail/bleu_main.jpg", 
+        "src/assets/detail/bleu_thumb1.jpg", 
+        "src/assets/detail/bleu_thumb2.jpg", 
+        "src/assets/detail/bleu_thumb3.jpg", 
+    ],
+    sizes: [ // ตัวเลือกขนาดและราคาที่เพิ่มขึ้น
+        { size: "60ml", price: 7100 },
+        { size: "100ml", price: 8900 }, // สมมติว่า 100ml ราคาสูงกว่า
+    ],
+    detail: "A powerful and refined interpretation of the iconic fragrance, embodying the essence of a man who chooses his own destiny. Notes of cedar and sandalwood create a profound, lasting trail.",
+    rating: 5.0,
+    reviewCount: 17
+};
 
-const SearchResultsPage = () => {
+// --- ข้อมูลสินค้าเพิ่มเติม (Related Products - เหมือนเดิม) ---
+const DUMMY_PRODUCTS = [
+  // ... ใส่ข้อมูล DUMMY_PRODUCTS ที่เกี่ยวข้องสำหรับส่วนสินค้าเพิ่มเติมที่ด้านล่าง ...
+  // ... (เพื่อความกระชับ ขอละไว้ แต่ควรมีเพื่อให้หน้าไม่ว่างเปล่า) ...
+];
+
+
+const ProductDetailresult = () => {
     const location = useLocation();
-    const [allProducts, setAllProducts] = useState([]); // เก็บสินค้าทั้งหมดที่ดึงมา
-    const [filteredResults, setFilteredResults] = useState([]); // เก็บสินค้าที่กรองแล้ว
-    const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState(null);
+    const navigate = useNavigate();
+    
+    // ดึงข้อมูลสินค้าที่ส่งมา หรือใช้ข้อมูลจำลองถ้าไม่มี (สำหรับ Debug)
+    const initialProduct = location.state?.productData || MOCK_PRODUCT_DATA; 
+    
+    // State สำหรับการจัดการ Gallery และ Size
+    const [product, setProduct] = useState(initialProduct);
+    const [mainImage, setMainImage] = useState(initialProduct.images[0]); // รูปภาพหลักที่แสดง
+    const [selectedSize, setSelectedSize] = useState(initialProduct.sizes[0].size); // ขนาดที่ถูกเลือก
 
-    const queryParams = new URLSearchParams(location.search);
-    const searchTerm = queryParams.get('search') || '';
-    const sexFilter = queryParams.get('sex') || 'ALL';
-    const sizeFilter = queryParams.get('size') || 'ALL';
-    const seasonFilter = queryParams.get('season') || 'ALL';
+    // คำนวณราคาสุทธิ
+    const currentPrice = product.sizes.find(s => s.size === selectedSize)?.price || product.price;
 
-    // *** Logic: Client-Side Filtering (เหมือนเดิม) ***
-    const clientSideFilter = (products) => {
-        const query = searchTerm.toLowerCase();
-        
-        return products.filter(product => {
-            const matchesSearch = !query || 
-                (product.product_name && product.product_name.toLowerCase().includes(query)) ||
-                (product.scent_description && product.scent_description.toLowerCase().includes(query));
-
-            // สมมติว่าคอลัมน์ category_sex, size, category_season มีอยู่ในตาราง product
-            const matchesSex = sexFilter === 'ALL' || (product.category_sex && product.category_sex.toLowerCase() === sexFilter.toLowerCase());
-            const matchesSize = sizeFilter === 'ALL' || (product.size && product.size.toLowerCase() === sizeFilter.toLowerCase());
-            const matchesSeason = seasonFilter === 'ALL' || (product.category_season && product.category_season.toLowerCase() === seasonFilter.toLowerCase());
-
-            return matchesSearch && matchesSex && matchesSize && matchesSeason;
-        });
+    const handleBackToSearch = () => {
+        navigate('/Search');
     };
 
-    // 1. ดึงข้อมูลทั้งหมดจาก API (รันครั้งเดียว)
-    useEffect(() => {
-        const fetchAllProducts = async () => {
-            setIsLoading(true);
-            setError(null);
-            try {
-                const response = await axios.get(API_URL);
-                if (!response.data.error) {
-                    setAllProducts(response.data.data);
-                }
-            } catch (err) {
-                setError('ไม่สามารถดึงข้อมูลสินค้าทั้งหมดได้');
-            } finally {
-                setIsLoading(false);
-            }
-        };
-        fetchAllProducts();
-    }, []); 
+    // กรองสินค้าอื่นๆ ที่ไม่ใช่สินค้าหลัก
+    const relatedProducts = DUMMY_PRODUCTS.filter(p => p.id !== product?.id);
 
-    // 2. กรองข้อมูลเมื่อ allProducts หรือ Query Parameter เปลี่ยน
-    useEffect(() => {
-        const results = clientSideFilter(allProducts);
-        setFilteredResults(results);
-    }, [allProducts, location.search]); 
-    
-    // แสดงสรุปผลการค้นหา
-    const searchSummary = [sexFilter, sizeFilter, seasonFilter].filter(f => f !== 'ALL').length > 0
-        ? ` (Filtered by: ${[sexFilter, sizeFilter, seasonFilter].filter(f => f !== 'ALL').join(', ')})`
-        : searchTerm ? ` (Search Term: ${searchTerm})` : '';
     return (
-        <div className="search-results-page">
+        <div className="product-detail-page-container">
+            {/* --- Header/Navigation Bar (Home, Collections, Eros) --- */}
+            {/* ส่วนนี้จะอยู่ใน Component NavbarTop ที่คุณได้สร้างไว้ */}
             
-            {/* ส่วน Hero Image และ Banner (ปรับตามดีไซน์ Result.jpg) */}
-            <div className="result-hero-image">
-                {/* อาจจะใช้ Image ของสินค้าตัวแรก หรือภาพรวม */}
-                {/*  */}
-            </div>
-            <div className="product-listing-header">
-                {/* All Product: ส่วนหัวของ Grid Listing */}
-                <h2 className="listing-title">All Product <span className="search-summary-text">{searchSummary}</span></h2>
-                <div className="sort-dropdown">
-                    {/* Placeholder for Sorting Dropdown */}
-                    <select className="sort-select">
-                        <option>Recommended</option>
-                        <option>Price: Low to High</option>
-                        <option>Price: High to Low</option>
-                    </select>
+            <button className="back-button" onClick={handleBackToSearch}>
+                <FaArrowLeft /> Back to Search
+            </button>
+
+            {/* --- ส่วนแสดงรายละเอียดสินค้าหลัก (Main Product Detail) --- */}
+            <div className="main-product-detail-section">
+                
+                {/* 1. ส่วน Gallery รูปภาพ (ซ้าย) */}
+                <div className="image-gallery-section">
+                    <div className="thumbnail-list">
+                        {product.images.map((img, index) => (
+                            <img
+                                key={index}
+                                src={img}
+                                alt={`View ${index + 1}`}
+                                className={`thumbnail-image ${img === mainImage ? 'active' : ''}`}
+                                onClick={() => setMainImage(img)}
+                            />
+                        ))}
+                    </div>
+                    <div className="main-image-container">
+                        <img src={mainImage} alt={product.name} className="main-product-image" />
+                    </div>
                 </div>
-            </div>
-            <hr className="divider-line" />
-            {/* --- แสดงผลลัพธ์ --- */}
-            {isLoading && <div className="loading-state">กำลังดึงข้อมูล...</div>}
-            {error && <div className="error-state">{error}</div>}
-            {!isLoading && !error && filteredResults.length === 0 && (
-                <div className="no-results">
-                    ไม่พบสินค้าที่ตรงตามเงื่อนไข
-                </div>
-            )}
-            {!isLoading && !error && filteredResults.length > 0 && (
-                <div className="product-grid">
-                    {filteredResults.map((product) => (
-                        <div key={product.product_ID} className="product-card-result">
-                            <div className="card-image-wrapper">
-                                <img 
-                                    src={product.image_url || '/placeholder.jpg'} 
-                                    alt={product.product_name} 
-                                    className="product-image-result"
-                                />
-                            </div>
-                            <div className="product-info-result">
-                                <p className="product-brand">{product.brand_name || 'LOUIS VUITTON'}</p>
-                                
-                                {/* product_name เป็นตัวหนาและใหญ่กว่า */}
-                                <h3 className="product-name-result">{product.product_name}</h3> 
-                                
-                                <p className="product-price-result">
-                                    {product.price ? product.price.toLocaleString() : 'N/A'} THB
-                                </p>
-                            </div>
+
+                {/* 2. ส่วนข้อมูลสินค้า (ขวา) */}
+                <div className="info-section">
+                    <h1>{product.name}</h1>
+                    <h2>{product.brand}</h2>
+                    <p className="price-tag">{currentPrice.toLocaleString('th-TH')} THB</p>
+                    
+                    <div className="detail-links">
+                        <a href="#details-section">More Details</a>
+                        <span className="action-icons">
+                            <FaHeart className="icon-link" />
+                            <FaShareAlt className="icon-link" />
+                        </span>
+                    </div>
+                    
+                    <h3>Size:</h3>
+                    <div className="size-options">
+                        {product.sizes.map((sizeOption) => (
+                            <button
+                                key={sizeOption.size}
+                                className={`size-button ${selectedSize === sizeOption.size ? 'active' : ''}`}
+                                onClick={() => setSelectedSize(sizeOption.size)}
+                            >
+                                {sizeOption.size}
+                            </button>
+                        ))}
+                    </div>
+
+                    <button className="action-button-add-cart">Add to cart</button>
+
+                    <div className="rating-section">
+                        <div className="stars">
+                            {'★'.repeat(Math.floor(product.rating))}
+                            {'☆'.repeat(5 - Math.floor(product.rating))}
                         </div>
-                    ))}
+                        <span className="review-count">({product.reviewCount})</span>
+                        <a href="#review-section" className="see-review-link">See Review</a>
+                    </div>
                 </div>
-            )}
-            {/* ส่วน Banner คั่นกลาง (ตามภาพ Result.jpg) */}
-            <div className="middle-banner">
-                {/*  */}
             </div>
-            {/* หากมีผลลัพธ์ชุดที่สองต่อ ก็สามารถใช้ product-grid ซ้ำได้ */}
+
+            {/* --- Footer (Service, Policy, Order, Eros) --- */}
+            {/* ส่วนนี้จะอยู่ใน Component Footer ที่คุณได้สร้างไว้ */}
+            
+            {/* --- ส่วนแสดงสินค้าเพิ่มเติม (Related Products / More Products) --- */}
+            {/* สามารถนำส่วน Related Products กลับมาใช้ที่ด้านล่างได้หากต้องการ */}
+            
         </div>
     );
 };
 
-export default SearchResultsPage;
+export default ProductDetailresult;

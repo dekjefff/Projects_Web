@@ -15,7 +15,7 @@ const CartPage = () => {
 
     const handleAddAddressClick = () => {
         // เชื่อมไปหน้า ShippingAddress ซึ่งอยู่ที่ pages/Cart/Shipping address
-        navigate('/Shipping address/ShippingAddress.jsx'); 
+        navigate('/ShippingAddress'); 
     };
 
     const handleCheckout = () => {

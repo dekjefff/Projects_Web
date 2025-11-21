@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 class NavbarTop extends HTMLElement {
     constructor() {
         super();
@@ -17,7 +18,7 @@ class NavbarTop extends HTMLElement {
                 <a href="#" class="nav-item">Men</a>
                 <a href="#" class="nav-item">Women</a>
                 <div class="nav-icons">
-                    <a href="#" class="search-icon"><img src="src/assets/icon.png" alt="search" /></a>
+                    <a href="/Search" class="search-icon"><img src="src/assets/icon.png" alt="search" /></a>
                     <a href="/cartpage" class="bag-icon"><img src="src/assets/Bag_alt.png" alt="bag" /></a>
                     <a href="/login" class="login-icon"><img src="src/assets/Login.png" alt="Login" /></a>
                 </div>

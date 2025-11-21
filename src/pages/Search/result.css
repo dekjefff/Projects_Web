@@ -1,114 +1,207 @@
-/* --- Search Results Design Styles (Result.jpg) --- */
+/* result.css */
 
-.search-results-page {
-    max-width: 1400px; /* ขยายความกว้างตามดีไซน์ */
-    margin: 0 auto;
-    padding: 0;
-    font-family: Arial, sans-serif;
+/* สีหลัก */
+:root {
+  --primary-color: #dab162; /* สีทอง/เบจ */
+  --secondary-color: #333333; /* สีเทาเข้ม */
+  --light-gray: #f7f3ed; /* สีเบจอ่อน */
 }
 
-.result-hero-image {
-    width: 100%;
-    height: 400px; /* ความสูงของ Hero Image */
-    background-image: url('placeholder-hero.jpg'); /* แทนที่ด้วย URL รูปภาพจริง */
-    background-size: cover;
-    background-position: center;
-    margin-bottom: 20px;
+.product-detail-page-container {
+  padding: 40px 10%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.product-listing-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    margin-bottom: 10px;
+.back-button {
+  background: none;
+  border: 1px solid var(--secondary-color);
+  color: var(--secondary-color);
+  padding: 10px 15px;
+  margin-bottom: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1em;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-.listing-title {
-    font-size: 1.2em;
-    font-weight: normal;
-    color: #333;
+.back-button:hover {
+  background-color: var(--secondary-color);
+  color: white;
 }
 
-.search-summary-text {
-    font-size: 0.8em;
-    color: #888;
+/* --- ส่วนแสดงรายละเอียดสินค้าหลัก (Main Product Detail) --- */
+.main-product-detail-section {
+  display: flex;
+  gap: 50px;
+  flex-wrap: wrap; 
+  align-items: flex-start;
+  margin-bottom: 60px; /* เพิ่มระยะห่างกับส่วนสินค้าอื่นๆ */
+  padding-bottom: 40px;
+  border-bottom: 1px solid #eee; /* เส้นแบ่ง */
 }
 
-.sort-select {
-    padding: 5px 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.image-section {
+  flex: 1;
+  min-width: 300px;
+  max-width: 45%;
+  background-color: var(--light-gray); /* สีพื้นหลังเหมือนในรูป */
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-.divider-line {
-    border: 0;
-    height: 1px;
-    background-color: #eee;
-    margin: 10px 0 20px 0;
+.main-product-image {
+  width: 100%;
+  max-height: 450px; /* จำกัดความสูงของรูปภาพหลัก */
+  object-fit: contain;
 }
 
-/* --- Product Grid & Card Styles (4 Columns) --- */
-.product-grid {
-    display: grid;
-    /* 4 คอลัมน์ (หรือปรับตามขนาดหน้าจอ) */
-    grid-template-columns: repeat(4, 1fr); 
-    gap: 20px;
-    padding: 0 20px;
-    margin-bottom: 40px;
+.info-section {
+  flex: 1.5;
+  min-width: 300px;
 }
 
-.product-card-result {
-    text-align: left;
-    display: flex;
+.info-section h1 {
+  font-size: 2.5em;
+  margin-bottom: 5px;
+  color: var(--secondary-color);
+}
+
+.info-section h2 {
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  color: #777;
+  font-weight: 300;
+}
+
+.price-tag {
+  font-size: 1.8em;
+  color: #a30000;
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.specifications p {
+  font-size: 1.1em;
+  margin: 8px 0;
+}
+
+.description-text {
+  margin-top: 20px;
+  line-height: 1.6;
+  color: #555;
+}
+
+.action-button {
+  margin-top: 30px;
+  padding: 15px 40px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.action-button:hover {
+  opacity: 0.9;
+}
+
+/* --- ส่วนแสดงสินค้าเพิ่มเติม (Related Products / More Products) --- */
+.related-products-section h3 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.8em;
+  color: var(--secondary-color);
+  font-weight: 300;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 15px;
+}
+
+.product-list-grid { /* ใช้ Grid เดียวกับ Search.jsx */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* ปรับขนาดให้เล็กลงหน่อยสำหรับสินค้าที่เกี่ยวข้อง */
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.product-card {
+  border: 1px solid #eee;
+  padding: 15px;
+  text-align: center;
+  background-color: white;
+  border-radius: 5px;
+  transition: transform 0.2s;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-image {
+  width: 100%;
+  height: 200px; /* ปรับขนาดรูปภาพสินค้าที่เกี่ยวข้อง */
+  object-fit: cover;
+  margin-bottom: 15px;
+  border-radius: 3px;
+}
+
+.product-info p {
+  margin: 5px 0;
+  font-size: 0.9em;
+}
+
+.product-name {
+  font-weight: bold;
+  color: var(--primary-color);
+}
+
+.product-price {
+  color: #a30000;
+  font-size: 1em;
+  font-weight: bold;
+}
+
+.detail-button {
+  margin-top: 10px;
+  padding: 6px 15px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: opacity 0.3s;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.85em;
+}
+
+.detail-button:hover {
+  opacity: 0.8;
+}
+
+
+/* Media Query สำหรับ Responsive */
+@media (max-width: 768px) {
+  .main-product-detail-section {
     flex-direction: column;
-}
-
-.card-image-wrapper {
-    /* พื้นหลังสีเทาอ่อน/ขาวตามภาพ Result.jpg */
-    background-color: #f8f8f8; 
-    padding: 20px; 
-    border-radius: 4px;
-    overflow: hidden;
-    /* เพื่อให้ขยายเต็มพื้นที่คอลัมน์ */
-    height: auto; 
-}
-
-.product-image-result {
-    width: 100%;
-    height: 250px; /* ปรับความสูงตามต้องการ */
-    object-fit: contain;
-    transition: transform 0.3s;
-}
-
-.product-info-result {
-    padding-top: 10px;
-}
-
-.product-brand {
-    font-size: 0.7em;
-    color: #555;
-    margin: 0;
-}
-
-.product-name-result {
-    font-size: 0.9em;
-    font-weight: bold; /* ชื่อสินค้าเป็นตัวหนา */
-    margin: 2px 0;
-}
-
-.product-price-result {
-    font-size: 0.85em;
-    color: #333;
-    font-weight: bold;
-    margin: 2px 0;
-}
-
-.middle-banner {
-    width: 100%;
-    height: 400px; /* ความสูงของ Banner คั่นกลาง */
-    background-image: url('placeholder-middle-banner.jpg'); /* แทนที่ด้วย URL รูปภาพจริง */
-    background-size: cover;
-    background-position: center;
-    margin: 40px 0;
+    gap: 30px;
+  }
+  .image-section {
+    max-width: 100%;
+  }
+  .product-list-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
 }

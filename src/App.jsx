@@ -8,10 +8,10 @@ import Forgot_Pass from './pages/Login/Forgot/Forgot.jsx'; //
 import Admin_Login from './pages/Login/Admin_login/Admin.jsx';
 import ShippingAddress from './pages/Cart/Shipping address/ShippingAddress.jsx';
 import TeamDev from './pages/Team/teamprofile.jsx';
-import ErosHomePage from './pages/home-page/homepage.jsx';
+import HomePage from './pages/home-page/homepage.jsx';
 import DetailMore from './pages/Datail/detailMore.jsx'
-import SearchResultsPage from './pages/Search/Result.jsx';
-import SearchOverlay from './pages/Search/Search.jsx';
+import ProductDetailresult from './pages/Search/Result.jsx';
+import ProductSearch from './pages/Search/Search.jsx';
 import UserManagement from './pages_admin/UserManagement.jsx';
 import UserAccounteditForm from './pages_admin/UserAccounteditForm.jsx';
 import ProductList from './pages_admin/ProductList.jsx';
@@ -35,9 +35,9 @@ function App() {
         <Route path="/TeamDev" element={<TeamDev />} />
         <Route path="/detail" element={<ProductDetail productId="123" />} /> {/* <--- เพิ่ม productId เข้าไป */}
         <Route path="/cartpage" element={<CartPage />} />
-        <Route path="/" element={<ErosHomePage />} />
-        <Route path="/SearchResults" element={<SearchResultsPage />} />
-        <Route path="/Search" element={<SearchOverlay />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/resultDetailsearch" element={<ProductDetailresult />} />
+        <Route path="/Search" element={<ProductSearch />} />
         <Route path="/UserManagement" element={<UserManagement />} />
         <Route path="/edit-user" element={<UserAccounteditForm />} />
         <Route path="/ProductList" element={<ProductList />} />
