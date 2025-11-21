@@ -32,7 +32,7 @@ const AddNewAddressModal = ({ onClose, onSave }) => {
       <div className="modal-content">
         <h3 className="modal-title">Add new Address</h3>
         
-        <div className="input-group">
+        <div className="ShippingAddress_input-group">
           <input 
             type="text" 
             name="firstName"
@@ -105,13 +105,11 @@ const ShippingAddress = () => {
   return (
     <div className="shipping-container">
       <navlogo-component />
-
+      <div class="line"></div>
       <div className="header-section">
         <h1 className="title">Shipping address</h1>
         <p className="subtitle">Manage and protect your address</p>
-      </div>
-
-      <div className="my-address-section">
+        <div className="my-address-section">
         <span className="my-address-text">My address</span>
         <button 
           className="add-button" 
@@ -120,7 +118,6 @@ const ShippingAddress = () => {
           + Add new address
         </button>
       </div>
-      
       {/* Display Existing Address */}
       <div className="address-box">
         <div className="address-line">
@@ -129,6 +126,7 @@ const ShippingAddress = () => {
         <div className="address-line">
           {existingAddress.details}
         </div>
+      </div>
       </div>
 
       {/* The Modal Pop-up */}

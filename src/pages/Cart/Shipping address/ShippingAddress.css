@@ -1,7 +1,6 @@
 /* --- Global & Layout Styles --- */
 .shipping-container {
-    padding: 40px;
-    background-color: #f5f0e1; /* Light beige background */
+    background-color: #F5F0E9; /* Light beige background */
     min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     position: relative;
@@ -24,7 +23,7 @@
 
 .header-section {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 10px auto;
 }
 
 .title {
@@ -48,6 +47,8 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
 }
 
 .my-address-text {
@@ -74,12 +75,9 @@
 .address-box {
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
     /* Removed border to match the first image where the content is inline */
     /* border: 1px solid #eee; */ 
-    border-radius: 5px;
     /* background-color: #fff; */ 
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
 .address-line {
@@ -103,14 +101,12 @@
 }
 
 .modal-content {
-    background-color: #fff;
+    background-color: #F5F0E9;
     padding: 30px 40px;
     border-radius: 8px;
     width: 90%;
     max-width: 600px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    /* Blue border for visibility in the second image */
-    border: 3px solid #6aa5c7; 
 }
 
 .modal-title {
@@ -121,7 +117,7 @@
     color: #333;
 }
 
-.input-group {
+.ShippingAddress_input-group {
     display: flex;
     gap: 20px;
     margin-bottom: 15px;
@@ -211,4 +207,11 @@
 .follow-us span {
     margin-left: 10px;
     /* Placeholder for icons */
+}
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: #484848;   /* สีเทาเข้มแบบในภาพ */
+    opacity: 0.6;                /* ทำให้บางลง */
+    margin: 0 auto;
 }
