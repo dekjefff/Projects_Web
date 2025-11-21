@@ -6,38 +6,40 @@ class footerLogin extends HTMLElement {
     }
     connectedCallback() {
         this.innerHTML = `
-            <footer class="site-footer">
+            <footer class="site-login-footer">
                 <div class="footer-content">
-                    <a href="#" class="footer-title">Services</a>
-                    <a href="#" class="footer-title">Policy</a>
-                    <a href="#" class="footer-title">Order</a>
-                    <a href="/TeamDev" class="footer-title">Eros</a>
-                    <a href="/Admin_Login" class="footer-title">Admin</a>
-                </div>
-
-<<<<<<< HEAD
-                <div class="footer-social">
-                    <div class="social-icons">
-                        <a href="#" class="social-icon">📷</a> 
-                        <a href="#" class="social-icon">𝐟</a> 
-                        <a href="#" class="social-icon">╳</a> 
-                        <a href="#" class="social-icon">🎶</a> </div>
-=======
-                    <div class="footer-social">
-                        <p class="social-title">FOLLOW US</p>
-                        <div class="IGG-icon"><img src="src/assets/Instragram-logo.png" alt="IG" /></div>
-                        <div class="FB-icon"><img src="src/assets/FB.png" alt="FB" /></div>
-                        <div class="X-icon"><img src="src/assets/X.png" alt="X" /></div>
-                        <div class="TT-icon"><img src="src/assets/TT.png" alt="TT" /></div>
->>>>>>> main
-                    </div>
+                    <a href="#">Services</a>
+                    <a href="#">Policy</a>
+                    <a href="#">Order</a>
+                    <a href="/TeamDev">Eros</a>
                 </div>
 
                 <div class="footer-bottom">
-                    <p class="copyright">© 2025 Eros. All rights reserved.</p>
-                </div>
 
-                <p class="social-title">FOLLOW US</p>
+                    <div class="copyright">© 2025 Eros. All rights reserved.</div>
+                
+                    <div class="Social-login-footer">
+                        <span class="Social-title">FOLLOW US</span>
+                        
+                        <div class="Social-icon">
+                            <a href="https://www.instagram.com/dekjefff/" target="_blank" rel="noopener noreferrer">
+                                <img src="src/assets/Instragram-logo.png" alt="Instragram"/>
+                            </a>
+
+                            <a href="https://www.facebook.com/share/17aGebKM63/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer">
+                                <img src="src/assets/FB.png" alt="Facebook" />
+                            </a>
+                    
+                            <a href="https://www.instagram.com/dekjefff/" target="_blank" rel="noopener noreferrer">
+                                <img src="src/assets/X.png" alt="Twitter" />
+                            </a>
+                    
+                            <a href="https://www.tiktok.com/@yakkinkaiping?_r=1&_t=ZS-91ZBIjllqh0" target="_blank" rel="noopener noreferrer">
+                                <img src="src/assets/TT.png" alt="Tiktok" />
+                            </a>
+                        </div>
+                    </div>
+                </div>
             </footer>
         `
     }

@@ -19,7 +19,8 @@ export default function UserAccountEditForm() {
         const q = new URLSearchParams(window.location.search);
         const id = q.get("id");
 
-        if (id) {
+        // guard against string 'undefined' or 'null' which can appear when links are built incorrectly
+        if (id && id !== 'undefined' && id !== 'null') {
             setPayload(prev => ({ ...prev, id }));
 
             fetch(`${API_BASE}/users/${id}`)

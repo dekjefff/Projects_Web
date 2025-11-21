@@ -181,3 +181,7 @@ html, body {
     color: white;
     box-shadow: 0 6px 14px rgba(111, 73, 246, .35);
 }
+.user_btn_danger {
+    background: #FF0000;
+    color: black;
+}

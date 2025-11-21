@@ -1,7 +1,6 @@
 // detail.jsx
 import React, { useState, useEffect } from 'react';
-import { useCart } from '../Cart/CartContext' // <--- **ถ้า** detail.jsx อยู่ใน pages/Datail/
-import './detail.css';
+import './detail.css'; // ตรวจสอบให้แน่ใจว่าชื่อไฟล์ CSS ถูกต้อง (detail.css)
 
 const dummyProduct = {
     id: '123',
@@ -209,7 +208,8 @@ const ProductDetail = ({ productId }) => {
                     </div>
                 </div>
             </main>
-            <footer-main-component />
+            
+            {/*<footer-main-component />*/}
         </div>
     );
 };

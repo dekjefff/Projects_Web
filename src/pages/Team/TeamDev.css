@@ -1,9 +1,10 @@
 /* กำหนดฟอนต์และพื้นหลังหลัก */
 .teamdev-container {
-    max-width: 800px;
     margin: 0 auto;
-    font-family: sans-serif; /* ปรับเปลี่ยนตามฟอนต์จริงที่คุณใช้ */
-    background-color: #f7f3ed; /* สีพื้นหลังอ่อนๆ คล้ายในรูป */
+    font-family: sans-serif;
+    /* ปรับเปลี่ยนตามฟอนต์จริงที่คุณใช้ */
+    background-color: #f7f3ed;
+    /* สีพื้นหลังอ่อนๆ คล้ายในรูป */
     color: #333;
     min-height: 100vh;
     display: flex;
@@ -16,13 +17,14 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px 40px;
-    border-bottom: 1px solid #c9b4a4; /* เส้นคั่นสีน้ำตาลอ่อน */
+    border-bottom: 1px solid #c9b4a4;
+    /* เส้นคั่นสีน้ำตาลอ่อน */
 }
 
 .header-text-teamdev {
     font-size: 0.9em;
     color: #666;
-    opacity: 0.5; 
+    opacity: 0.5;
 }
 
 .logo-section-teamdev {
@@ -33,7 +35,8 @@
 
 .logo-diamond-teamdev {
     font-size: 1.5em;
-    color: #ccaa00; /* สีเหลืองทองสำหรับเพชร */
+    color: #ccaa00;
+    /* สีเหลืองทองสำหรับเพชร */
 }
 
 .logo-text-teamdev {
@@ -46,12 +49,14 @@
 .logo-main-teamdev {
     font-size: 1.5em;
     font-weight: bold;
-    color: #4e3e33; /* สีน้ำตาลเข้ม */
+    color: #4e3e33;
+    /* สีน้ำตาลเข้ม */
 }
 
 .logo-sub-teamdev {
     font-size: 0.6em;
-    color: #a08a74; /* สีน้ำตาลอ่อนลง */
+    color: #a08a74;
+    /* สีน้ำตาลอ่อนลง */
     letter-spacing: 0.1em;
     text-transform: uppercase;
 }
@@ -72,13 +77,16 @@
 
 .team-members-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* 4 คอลัมน์สำหรับเดสก์ท็อป */
-    gap: 25px; /* ระยะห่างระหว่าง Card */
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    /* 4 คอลัมน์สำหรับเดสก์ท็อป */
+    gap: 25px;
+    /* ระยะห่างระหว่าง Card */
     justify-content: center;
 }
 
 .member-card {
-    background-color: #4e3e33; /* สีพื้นหลัง Card คล้ายในรูป */
+    background-color: #4e3e33;
+    /* สีพื้นหลัง Card คล้ายในรูป */
     border-radius: 8px;
     padding: 20px;
     text-align: center;
@@ -88,67 +96,74 @@
     flex-direction: column;
     align-items: center;
     transition: transform 0.2s ease-in-out, border 0.2s ease-in-out;
-    border: 3px solid transparent; /* เส้นขอบเริ่มต้นแบบโปร่งใส */
+    border: 3px solid transparent;
+    /* เส้นขอบเริ่มต้นแบบโปร่งใส */
 }
 
 .member-card:hover {
     transform: translateY(-5px);
 }
-
-.selected-member {
-    border: 3px solid #6c7dd2; /* สีฟ้าสำหรับ Card ที่ถูกเลือก (เส้นขอบ) */
-}
-
 .member-image-wrapper {
-    width: 120px;
-    height: 120px;
-    border-radius: 8px; /* มุมโค้งมนสำหรับกรอบรูป */
-    overflow: hidden; /* ซ่อนส่วนเกินของรูปภาพ */
+    border-radius: 8px;
+    /* มุมโค้งมนสำหรับกรอบรูป */
+    overflow: hidden;
+    /* ซ่อนส่วนเกินของรูปภาพ */
     margin-bottom: 15px;
-    border: 1px solid #c9b4a4; /* กรอบรูป */
+    border: 1px solid #c9b4a4;
+    /* กรอบรูป */
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #f0f0f0; /* สีพื้นหลังเผื่อรูปโหลดไม่ทัน */
+    background-color: #f0f0f0;
+    /* สีพื้นหลังเผื่อรูปโหลดไม่ทัน */
 }
 
 .member-image {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* ครอบคลุมพื้นที่และรักษาสัดส่วน */
+    object-fit: cover;
+    /* ครอบคลุมพื้นที่และรักษาสัดส่วน */
     display: block;
+
 }
 
 .member-name {
     font-size: 1.1em;
     font-weight: 600;
     margin-bottom: 5px;
-    color: #f7f3ed; /* สีชื่อ */
+    color: #f7f3ed;
+    /* สีชื่อ */
 }
 
 .member-id {
     font-size: 0.9em;
-    color: #bfa895; /* สีรหัสนักศึกษา */
+    color: #bfa895;
+    /* สีรหัสนักศึกษา */
     margin-bottom: 10px;
 }
 
 .member-instagram {
     font-size: 0.9em;
-    color: #bfa895; /* สี Instagram */
+    color: #bfa895;
+    /* สี Instagram */
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 5px;
+    
 }
-
 .instagram-icon {
+    
     font-size: 1em;
-    color: #f7f3ed; /* สีไอคอน Instagram */
+    color: #f7f3ed;
+    /* สีไอคอน Instagram */
 }
 
 
 /* ----------------- Footer Section (ปรับจาก ProfileCard ให้ใช้ className ต่างกัน) ----------------- */
 .teamdev-footer {
-    background-color: #38332d; /* สีพื้นหลัง Footer คล้ายในรูป */
+    background-color: #38332d;
+    /* สีพื้นหลัง Footer คล้ายในรูป */
     color: #ccc;
     padding: 30px 40px;
     display: flex;
@@ -170,7 +185,8 @@
 }
 
 .copyright-teamdev {
-    align-self: flex-end; /* จัดให้อยู่ด้านล่าง */
+    align-self: flex-end;
+    /* จัดให้อยู่ด้านล่าง */
 }
 
 .follow-us-teamdev {
@@ -188,7 +204,8 @@
 /* Responsive adjustments */
 @media (max-width: 768px) {
     .team-members-grid {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); /* ลดคอลัมน์ลงสำหรับหน้าจอเล็กลง */
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        /* ลดคอลัมน์ลงสำหรับหน้าจอเล็กลง */
     }
 
     .teamdev-footer {
@@ -202,7 +219,8 @@
         width: 100%;
     }
 
-    .copyright-teamdev, .follow-us-teamdev {
+    .copyright-teamdev,
+    .follow-us-teamdev {
         width: 100%;
         text-align: center;
     }
@@ -213,7 +231,10 @@
 }
 
 @media (max-width: 480px) {
-    .teamdev-content, .teamdev-header, .teamdev-footer {
+
+    .teamdev-content,
+    .teamdev-header,
+    .teamdev-footer {
         padding: 20px;
     }
 
@@ -221,7 +242,100 @@
         font-size: 2em;
         margin-bottom: 30px;
     }
+
     .team-members-grid {
-        grid-template-columns: 1fr 1fr; /* 2 คอลัมน์สำหรับมือถือ */
+        grid-template-columns: 1fr 1fr;
+        /* 2 คอลัมน์สำหรับมือถือ */
     }
+}
+
+.team-container {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 40px 0;
+}
+
+.team-card {
+    background: #2E2D2C;
+    width: 220px;
+    padding: 16px 16px 0 16px;
+    /* padding-bottom = 0 */
+    border-radius: 10px;
+    text-align: center;
+    color: #F5EDD9;
+    font-family: "Kanit", sans-serif;
+    align-items: center;
+    justify-content: center;
+}
+
+.team-img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.team-card h3 {
+    margin: 6px 0 4px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #bfa895;
+}
+
+.team-card p {
+    margin: 2px 0;
+    font-size: 15px;
+}
+
+.ig {
+    margin-top: 6px;
+    font-size: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    align-items: center;
+}
+
+.ig i {
+    color: #d1b56f;
+    font-size: 18px;
+}
+
+.team-card:nth-child(1) {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.team-card:nth-child(2) {
+    margin-top: 60px;
+    margin-bottom: 10px;
+}
+
+.team-card:nth-child(3) {
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.team-card:nth-child(4) {
+    margin-top: 60px;
+    margin-bottom: 10px;
+
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: #484848;
+    opacity: 0.6;
+    margin: 0 auto;
+}
+.team-card {
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-12px) scale(1.03); /* เด้งขึ้น + ขยาย */
+  box-shadow: 0 12px 20px rgba(0,0,0,0.25); /* ใส่เงาเพิ่ม */
 }

@@ -86,7 +86,6 @@ const User_Login = () => {
           </form>
           <div className="bottom-links">
             <a href="/Register_login" className="link">Don't have an account?</a>
-            <a href="/Forgot_Pass" className="link">Forgot Password?</a>
           </div>
         </div>
       </main>

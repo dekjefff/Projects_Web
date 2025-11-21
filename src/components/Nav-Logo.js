@@ -1,3 +1,4 @@
+import './Nav-Logo.css';
 class NavLogo extends HTMLElement {
     constructor() {
         super();

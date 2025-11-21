@@ -1,6 +1,5 @@
 /* กำหนดฟอนต์และพื้นหลังหลัก */
 .profile-container {
-    max-width: 800px;
     margin: 0 auto;
     font-family: sans-serif; /* ปรับเปลี่ยนตามฟอนต์จริงที่คุณใช้ */
     background-color: #f7f3ed; /* สีพื้นหลังอ่อนๆ คล้ายในรูป */
@@ -59,6 +58,8 @@
 
 /* ----------------- Content Section ----------------- */
 .profile-content {
+    max-width: 800px;
+    margin: 0 auto;
     padding: 40px 40px 80px 40px;
     flex-grow: 1;
 }
@@ -197,4 +198,11 @@
     display: flex;
     gap: 15px;
     justify-content: flex-end;
+}
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: #484848;   /* สีเทาเข้มแบบในภาพ */
+    opacity: 0.6;                /* ทำให้บางลง */
+    margin: 0 auto;
 }

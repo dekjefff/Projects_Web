@@ -29,8 +29,39 @@ router.get("/profile", accountController.verifyToken, (req,res) => {
 // router.get("/customerID", accountController.getCustomerID);
 
 
-router.get("/accountInfo", accountController.getUserProfile);
+// Users list (paginated). Protected — requires valid token.
+router.get("/users", accountController.getUsers);
+
+
+// Return account info for the authenticated user
+router.get("/accountInfo", accountController.verifyToken, accountController.getUserProfile);
 
 router.put("/updateProfile", accountController.verifyToken, accountController.updateUserProfile);
+
+router.get("/users/:customerId", accountController.getUserByCustomerId);
+
+
+
+
+// - URL: http://localhost:3030/users/
+// {
+//   "firstName": "Jaffrey",
+//   "lastName": "Smith",
+//   "gender": "M",
+//   "email": "jaffrey@example.com",
+//   "phone": "0812345678",
+//   "membership_status": "VIP"
+// }
+// {
+//   "firstName": "Jaffrey",
+//   "lastName": "Smith",
+//   "gender": "M",
+//   "email": "jaffrey@example.com",
+//   "phone": "0812345678",
+//   "membership_status": "VIP"
+// }
+
+
+router.put("/users/:customerId", accountController.updateUserByCustomerId);
 
 module.exports = router;

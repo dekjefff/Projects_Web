@@ -33,3 +33,11 @@
     color: #d1b87a; 
     margin-bottom: 25px;
 }
+
+.input-group{
+    background-color: transparent; /* ทำให้สีพื้นหลังโปร่งใส (มองทะลุไปเห็นสีครีมด้านหลัง) */
+    border: none;                  /* ลบเส้นขอบสี่เหลี่ยมออก */
+    outline: none;                 /* ลบเส้นขอบเรืองแสงเวลาคลิก (Focus) */
+    box-shadow: none;
+    color : #d1b87a;
+}

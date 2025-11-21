@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import "./UserAccounteditForm.css";
 
 export default function UserAccountEditForm() {
-    const API_BASE = "";
+    const API_BASE = "http://localhost:3030"; // backend base URL
 
     const [payload, setPayload] = useState({
-        id: "",
+        id: "",           // customer_ID
+        user_name: "",
         gender: "M",
         firstName: "",
         lastName: "",
         email: "",
         phone: "",
-        address: "",
         membership: "VIP"
     });
 
@@ -21,10 +21,23 @@ export default function UserAccountEditForm() {
 
         if (id) {
             setPayload(prev => ({ ...prev, id }));
-
-            fetch(`${API_BASE}/users/${id}`)
-                .then(res => res.json())
-                .then(data => setPayload(data))
+            fetch(`${API_BASE}/users/${encodeURIComponent(id)}`)
+                .then(res => {
+                    if (!res.ok) throw new Error("Failed to load user");
+                    return res.json();
+                })
+                .then(data => {
+                    setPayload(prev => ({
+                        ...prev,
+                        user_name: data.user_name || "",
+                        gender: data.gender || prev.gender,
+                        firstName: data.firstName || "",
+                        lastName: data.lastName || "",
+                        email: data.email || "",
+                        phone: data.phone || "",
+                        membership: data.membership_status || prev.membership
+                    }));
+                })
                 .catch(() => console.log("Failed to load user"));
         }
     }, []);
@@ -37,152 +50,107 @@ export default function UserAccountEditForm() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // NEW
-        if (!payload.id) {
-            await fetch(`${API_BASE}/users`, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            });
-        }
-        // EDIT
-        else {
-            await fetch(`${API_BASE}/users/${payload.id}`, {
-                method: "PUT",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            });
-        }
+        try {
+            if (payload.id) {
+                // Edit user
+                const res = await fetch(`${API_BASE}/users/${encodeURIComponent(payload.id)}`, {
+                    method: "PUT",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+                if (!res.ok) throw new Error("Update failed");
+            } else {
+                // Create new user (optional)
+                const res = await fetch(`${API_BASE}/users`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+                if (!res.ok) throw new Error("Create failed");
+            }
 
-        window.location.href = "/UserManagement";
+            window.location.href = "/UserManagement";
+        } catch (err) {
+            console.error(err);
+            alert("Operation failed. Check console.");
+        }
     };
 
     return (
         <div className="edit_bg">
             <div className="edit_shell">
-                <section className="edit_header">
-                    <h1 className="edit_header_title">Admin Editer Tools</h1>
-                    <div className="edit_header_sub">User Account Management</div>
-                </section>
+                <h2>{payload.id ? "Edit User" : "Add New User"}</h2>
+                <form onSubmit={handleSubmit}>
+                    <label>User Name</label>
+                    <input
+                        id="user_name"
+                        type="text"
+                        value={payload.user_name}
+                        onChange={handleChange}
+                        required
+                    />
 
-                <section className="edit_stage">
-                    <form className="edit_card" onSubmit={handleSubmit}>
+                    <label>First Name</label>
+                    <input
+                        id="firstName"
+                        type="text"
+                        value={payload.firstName}
+                        onChange={handleChange}
+                        required
+                    />
 
-                        <div className="edit_caps">
-                            <span className="edit_caps_label">ID :</span>
+                    <label>Last Name</label>
+                    <input
+                        id="lastName"
+                        type="text"
+                        value={payload.lastName}
+                        onChange={handleChange}
+                        required
+                    />
+
+                    <label>Gender</label>
+                    <select id="gender" value={payload.gender} onChange={handleChange}>
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                    </select>
+
+                    <label>Email</label>
+                    <input
+                        id="email"
+                        type="email"
+                        value={payload.email}
+                        onChange={handleChange}
+                        required
+                    />
+
+                    <label>Phone</label>
+                    <input
+                        id="phone"
+                        type="text"
+                        value={payload.phone}
+                        onChange={handleChange}
+                    />
+
+                    <label>Membership</label>
+                    <select id="membership" value={payload.membership} onChange={handleChange}>
+                        <option value="VIP">VIP</option>
+                        <option value="Normal">Normal</option>
+                    </select>
+
+                    {payload.id && (
+                        <>
+                            <label>Customer ID</label>
                             <input
-                                className="edit_pill_inp"
                                 id="id"
                                 type="text"
+                                value={payload.id}
+                                disabled
                             />
+                        </>
+                    )}
 
-                            <span className="edit_caps_label ml8">Gender :</span>
-
-                            <select
-                                className="edit_pill_sel"
-                                id="gender"
-                                value={payload.gender}
-                                onChange={handleChange}
-                            >
-                                <option value="M">M</option>
-                                <option value="F">F</option>
-                                <option value="O">Other</option>
-                            </select>
-                        </div>
-
-                        <div className="edit_row">
-                            <div className="edit_field">
-                                <label>First Name</label>
-                                <input
-                                    className="edit_inp"
-                                    id="firstName"
-                                    type="text"
-                                    value={payload.firstName}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-
-                            <div className="edit_field">
-                                <label>Last Name</label>
-                                <input
-                                    className="edit_inp"
-                                    id="lastName"
-                                    type="text"
-                                    value={payload.lastName}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                        </div>
-
-                        <div className="edit_row">
-                            <div className="edit_field">
-                                <label>Email</label>
-                                <input
-                                    className="edit_inp"
-                                    id="email"
-                                    type="email"
-                                    value={payload.email}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-
-                            <div className="edit_field">
-                                <label>Phone</label>
-                                <input
-                                    className="edit_inp"
-                                    id="phone"
-                                    type="tel"
-                                    value={payload.phone}
-                                    onChange={handleChange}
-                                    required
-                                />
-                            </div>
-                        </div>
-
-                        <div className="edit_field mb10">
-                            <label>Shipping Address</label>
-                            <textarea
-                                className="edit_ta"
-                                id="address"
-                                value={payload.address}
-                                onChange={handleChange}
-                            />
-                        </div>
-
-                        <div className="edit_row">
-                            <div className="edit_field">
-                                <label>Membership status</label>
-                                <select
-                                    className="edit_sel"
-                                    id="membership"
-                                    value={payload.membership}
-                                    onChange={handleChange}
-                                >
-                                    <option value="VIP">VIP</option>
-                                    <option value="Gold">Gold</option>
-                                    <option value="Member">Member</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div className="edit_form_actions">
-                            <button
-                                type="button"
-                                className="edit_btn edit_btn_cancel"
-                                onClick={() => (window.location.href = "/UserManagement")}
-                            >
-                                Cancel
-                            </button>
-
-                            <button type="submit" className="edit_btn edit_btn_save">
-                                Save
-                            </button>
-                        </div>
-                    </form>
-                </section>
+                    <button type="submit">{payload.id ? "Update User" : "Add User"}</button>
+                </form>
             </div>
         </div>
     );
