@@ -45,3 +45,265 @@
     width: 24px; 
     height: 24px;
 }
+/* =================================================== */
+/* 1. LAYOUT & GLOBAL STYLES */
+/* =================================================== */
+:root {
+    --primary-color: #000; /* สีหลัก (ดำ) */
+    --secondary-color: #fff; /* สีรอง (ขาว) */
+    --accent-color: #E81D2C; /* สีแดงสำหรับเน้น (ถ้ามี) */
+    --text-light: #555;
+    --border-color: #ccc;
+    --font-family: 'Arial', sans-serif; /* แนะนำให้ใช้ Font ที่สวยงาม */
+}
+
+body {
+    font-family: var(--font-family);
+    margin: 0;
+    padding: 0;
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+/* =================================================== */
+/* 2. PRODUCT DETAIL CONTAINER */
+/* =================================================== */
+
+/* คอนเทนเนอร์หลักของหน้า */
+.product-detail-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    /* การจัดองค์ประกอบโดยรวมจะอยู่ใน main */
+}
+
+/* ส่วนเนื้อหาหลัก (Gallery + Info) */
+.product-content {
+    display: flex;
+    gap: 80px; /* ระยะห่างระหว่างรูปภาพและข้อมูล */
+    padding: 50px 0;
+}
+
+/* =================================================== */
+/* 3. IMAGE GALLERY (ซ้าย) */
+/* =================================================== */
+
+.image-gallery {
+    display: flex;
+    gap: 20px;
+    flex-basis: 60%; /* ให้ส่วนรูปภาพกินพื้นที่ประมาณ 60% */
+}
+
+/* รูปภาพย่อ (Thumbnails) */
+.thumbnails {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100px; /* ความกว้างของส่วน thumbnails */
+    flex-shrink: 0; /* ไม่ให้ส่วนนี้ถูกย่อ */
+}
+
+.thumbnail-item {
+    width: 100px;
+    height: 100px;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+    transition: border 0.2s;
+    overflow: hidden;
+    /* ทำให้รูปภาพย่อมีขอบเขตและจัดกึ่งกลาง */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.thumbnail-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* ทำให้รูปภาพย่อเต็มกรอบโดยไม่เสียสัดส่วน */
+}
+
+.thumbnail-item.active {
+    border: 1px solid var(--primary-color); /* ขอบสีดำเมื่อ Active */
+}
+
+/* รูปภาพหลัก */
+.main-image {
+    flex-grow: 1;
+    max-width: 500px; /* กำหนดขนาดสูงสุดของรูปภาพหลัก */
+}
+
+.product-main-img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* =================================================== */
+/* 4. PRODUCT INFO (ขวา) */
+/* =================================================== */
+
+.product-info {
+    flex-basis: 40%; /* ให้ส่วนข้อมูลกินพื้นที่ประมาณ 40% */
+    padding-top: 20px; /* เลื่อนลงมาเล็กน้อยให้สมมาตรกับรูปภาพ */
+}
+
+.product-name {
+    font-size: 2em;
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.product-price {
+    font-size: 1.5em;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.more-details {
+    color: var(--text-light);
+    font-size: 0.9em;
+    text-decoration: underline;
+    margin-bottom: 30px;
+    display: block; /* ให้ลิงก์ขึ้นบรรทัดใหม่ */
+}
+
+/* ACTION ICONS (Like/Share) */
+.action-icons {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.icon-wrapper {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.icon-wrapper img {
+    width: 25px; /* ขนาดไอคอน */
+    height: 25px;
+}
+
+/* SIZE OPTIONS */
+.size-options {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.size-button {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 8px 15px;
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.size-button.selected {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+
+/* ADD TO CART BUTTON */
+.add-to-cart-button {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    border: none;
+    padding: 15px 0;
+    font-size: 1em;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 30px;
+    transition: background-color 0.2s;
+}
+
+.add-to-cart-button:hover {
+    background-color: #333;
+}
+
+/* REVIEWS */
+.reviews {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.rating-stars {
+    color: var(--primary-color);
+    font-size: 1.2em;
+    letter-spacing: 2px;
+}
+
+.rating-value {
+    font-weight: bold;
+}
+
+.review-count {
+    color: var(--text-light);
+}
+
+.see-review-link {
+    color: var(--text-light);
+    text-decoration: underline;
+    font-size: 0.9em;
+}
+
+/* MESSAGE (Copy/Error) */
+.copy-message, .error-message {
+    margin-top: -15px;
+    margin-bottom: 20px;
+    font-size: 0.9em;
+    color: green; /* สามารถเปลี่ยนสี error เป็นแดง */
+}
+
+/* =================================================== */
+/* 5. RESPONSIVENESS (สำหรับหน้าจอขนาดเล็ก) */
+/* =================================================== */
+
+@media (max-width: 900px) {
+    .product-content {
+        flex-direction: column;
+        gap: 30px;
+        padding: 20px;
+    }
+
+    .image-gallery {
+        /* เปลี่ยน Thumbnails ให้อยู่ด้านล่างหรือด้านข้างรูปหลัก */
+        flex-direction: column-reverse;
+        align-items: center;
+        width: 100%;
+    }
+
+    .main-image {
+        width: 100%;
+        max-width: none;
+    }
+
+    .thumbnails {
+        flex-direction: row;
+        width: 100%;
+        justify-content: center;
+        order: 2;
+    }
+
+    .thumbnail-item {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .product-info {
+        width: 100%;
+        padding-top: 0;
+    }
+}

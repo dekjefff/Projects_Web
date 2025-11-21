@@ -3,7 +3,7 @@ const router = express.Router();
 const DBcon = require('../Database/DBconnect')
 
 //section of admin management
-exports.SearchProduct = (req,res) => {
+exports.GetProduct = (req,res) => {
     // const search = req.body.
     DBcon.query("SELECT * FROM product", function(error,results){
         if(error) throw error;
