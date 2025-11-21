@@ -1,0 +1,79 @@
+navbar-component {
+    display: block;      /* ให้เป็น Block level element */
+    position: relative;  /* <--- บรรทัดนี้สำคัญที่สุดในการแก้ปัญหา */
+    width: 100%;
+    /* ... สไตล์อื่นๆ ของ Navbar container ... */
+}
+.search-dropdown-overlay {
+    /* *** การควบคุมการแสดงผล (ซ่อนเริ่มต้น) *** */
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    
+    /* ****************************************************** */
+    /* *** แก้ไข 1: เพิ่ม transform และขยาย transition *** */
+    /* ****************************************************** */
+    /* ผลัก Dropdown ขึ้นไปด้านบนเล็กน้อย (ซ่อนอยู่) */
+    transform: translateY(-20px); 
+    
+    /* ขยาย transition ให้ครอบคลุมการเปลี่ยนค่า transform ด้วย */
+    transition: 
+        opacity 0.3s ease-out, 
+        visibility 0.3s ease-out, 
+        transform 0.3s ease-out; 
+
+    /* *** การจัดตำแหน่ง (Positioning) *** */
+    position: absolute; 
+    top: 100%; 
+    left: 0;
+    width: 100%; 
+    z-index: 100; 
+    
+    /* *** รูปลักษณ์ (Styling) *** */
+    background-color: #f5f0e9; 
+    border-top: 1px solid #ddd;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 20px 0; 
+}
+
+.search-dropdown-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    
+    /* ****************************************************** */
+    /* *** แก้ไข 2: ดึง Dropdown กลับมาที่ตำแหน่งปกติ *** */
+    /* ****************************************************** */
+    transform: translateY(0); /* เลื่อนลงมาสู่ตำแหน่งเดิม */
+}
+
+/* ปรับ Content ภายใน Dropdown ให้มีขนาดที่เหมาะสม (ไม่มีการเปลี่ยนแปลงสำหรับ Animation) */
+.search-content {
+    max-width: 900px;
+    margin: 0 auto; 
+    
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    gap: 15px; 
+    position: relative; 
+}
+
+/* สไตล์เฉพาะสำหรับปุ่มปิด (X) (ไม่มีการเปลี่ยนแปลง) */
+.close-btn {
+    position: absolute;
+    top: -5px;
+    right: 0;
+}
+
+/* สไตล์ช่องค้นหาหลักให้กว้าง (ไม่มีการเปลี่ยนแปลง) */
+.search-input-group {
+    flex-grow: 1; 
+}
+
+/* สไตล์ Filter Group ให้มีขนาดเล็กลง (ไม่มีการเปลี่ยนแปลง) */
+.filter-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
